@@ -1,0 +1,143 @@
+﻿<Window x:Class="Push_3._0_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Push_3._0_App"
+        mc:Ignorable="d"
+        Title="Push 3.0" Height="450" Width="900">
+    <Grid>
+        <ToolBarPanel DockPanel.Dock="Top">
+            <ToolBar Name="MainToolBar" Height="30" Background="DarkGray" VerticalAlignment="Top" ToolBarTray.IsLocked="True" Margin="0,0,-13,0">
+                <!--Button Name="TBFile" Content="File"/>
+                <Button Name="TBComputer" Content="Manage Computer"/-->
+                <Menu Background="DarkGray" ToolBar.OverflowMode="Never">
+                    <MenuItem Header="_File">
+                        <MenuItem Header="Launch Session Manager"/>
+                        <MenuItem Header="Settings / Preferences">
+                            <MenuItem Header="Connect to MDT Share"/>
+                            <MenuItem Header="Integrate with AD"/>
+                            <MenuItem Header="Set Groups Folder Location"/>
+                        </MenuItem>
+                        <MenuItem Header="Exit" />
+                    </MenuItem>
+                    <MenuItem Header="_Remote Computer">
+                        <MenuItem Header="Scan Host" />
+                        <MenuItem Header="Files on C$ Drive" />
+                        <MenuItem Header="Users and Groups" />
+                        <MenuItem Header="Manage Group Policy">
+                            <MenuItem Header="Edit Policy" />
+                            <MenuItem Header="Force GP Update" />
+                        </MenuItem>
+                        <MenuItem Header="Manage Computer" />
+                        <MenuItem Header="Restart Computer" />
+                        <MenuItem Header="Shutdown Computer" />
+                    </MenuItem>
+                </Menu>
+            </ToolBar>
+        </ToolBarPanel>
+        <!--/ToolBarTray-->
+        <ComboBox x:Name="Select_Group"
+                    Width="256"
+                    Height="25"
+                    Margin="16,35,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Button x:Name = "Select_All"
+                    Content="Select All"
+                    Width="128"
+                    Height="25"
+                    Margin="16,60,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Button x:Name = "Select_None"
+                    Content="Select None"
+                    Width="128"
+                    Height="25"
+                    Margin="144,60,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <ListBox x:Name="Computer_List"
+                    Height="300"
+                    Width="256"
+                    Margin="16,85,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Button x:Name="InstallOnMultipleMachines"
+                    Content="Install Now"
+                    Height="25"
+                    Width="256"
+                    Margin="16,385,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Label x:Name="Manual_Section_Header"
+                    Content="Work on a single computer"
+                    Margin="625,30,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Label x:Name="Enter_Name"
+                    Content="Enter Name:"
+                    Margin="625,50,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <TextBox x:Name="Computer_Name"
+                    Height="25"
+                    Width="256"
+                    Margin="625,75,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Button x:Name="InstallOnSingleMachine"
+                    Content="Install on that Machine"
+                    Height="25"
+                    Width="256"
+                    Margin="625,100,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Button x:Name="StartRemoteDesktop"
+                    Content="Remote Desktop"
+                    Height="25"
+                    Width="256"
+                    Margin="625,125,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Button x:Name="ScanComputer"
+                    Content="Scan Computer"
+                    Height="25"
+                    Width="256"
+                    Margin="625,150,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <ComboBox x:Name="TSListFilter"
+                    Height="25"
+                    Width="345"
+                    Margin="275,35,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <ListBox x:Name="TSList"
+                    Height="242"
+                    Width="345"
+                    Margin="275,60,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <Label x:Name="SearchTSLabel"
+                    Content="Search:"
+                    Height="25"
+                    Width="100"
+                    Margin="275,307,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <TextBox x:Name="SearchTS"
+                    Height="25"
+                    Width="190"
+                    Margin="330,310,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+        <CheckBox x:Name="ShowHidden"
+                    Content="Show Hidden"
+                    Height="25"
+                    Width="95"
+                    Margin="525,315,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top" />
+    </Grid>
+</Window>
