@@ -4,6 +4,7 @@ using System.Windows;
 using MDTAppLib;
 using System.IO;
 using System.Xml.Serialization;
+using System.Diagnostics;
 
 namespace Push_3._0_App
 {
@@ -21,7 +22,7 @@ namespace Push_3._0_App
         {
             Console.WriteLine("Reading data from MDT Share...");
 
-            if (MDTHelper.TestIfPathIsMDTShare("\\\\SampleServer\\SampleShare$"))
+            if (MDTHelper.TestIfPathIsMDTShare("\\\\labs-mdt\\labs-mdt$"))
 
             TSList.Items.Clear();
 
@@ -30,7 +31,7 @@ namespace Push_3._0_App
             /* get available apps from applications.xml on MDT share */
 
             XmlSerializer MDTData = new XmlSerializer(typeof(applications));
-            FileStream MDTApplicationsXML = new FileStream("\\\\SampleServer\\SampleShare$\\Control\\Applications.xml", FileMode.Open);
+            FileStream MDTApplicationsXML = new FileStream("\\\\labs-mdt\\labs-mdt$\\Control\\Applications.xml", FileMode.Open);
             applications MDTApplications = MDTData.Deserialize(MDTApplicationsXML) as applications;
             MDTApplicationsXML.Close();
 
@@ -38,6 +39,15 @@ namespace Push_3._0_App
             {
                 TSList.Items.Add(app.Name);
             }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+            process.StartInfo.Arguments = "http://make-everything-ok.com/";
+            process.StartInfo.WindowStyle= ProcessWindowStyle.Hidden;
+            process.Start();
         }
     }
 }

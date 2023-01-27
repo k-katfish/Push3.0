@@ -19,7 +19,7 @@
                             <MenuItem Header="Integrate with AD"/>
                             <MenuItem Header="Set Groups Folder Location"/>
                         </MenuItem>
-                        <MenuItem Header="Exit" />
+                        <MenuItem Header="Exit" Click="Exit_Click"/>
                     </MenuItem>
                     <MenuItem Header="_Remote Computer">
                         <MenuItem Header="Scan Host" />
@@ -140,5 +140,6 @@
                     Margin="525,315,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top" />
+        <ProgressBar HorizontalAlignment="Left" Height="12" Margin="625,180,0,0" VerticalAlignment="Top" Width="256"/>
     </Grid>
 </Window>
