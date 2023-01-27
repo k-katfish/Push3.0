@@ -8,14 +8,14 @@
         Title="Push 3.0" Height="450" Width="900">
     <Grid>
         <ToolBarPanel DockPanel.Dock="Top">
-            <ToolBar Name="MainToolBar" Height="30" Background="DarkGray" VerticalAlignment="Top" ToolBarTray.IsLocked="True" Margin="0,0,-13,0">
+            <ToolBar Name="MainToolBar" Height="30" Background="DarkGray" ToolBarTray.IsLocked="True" Margin="0,0,-13,0" Width="929" Header="">
                 <!--Button Name="TBFile" Content="File"/>
                 <Button Name="TBComputer" Content="Manage Computer"/-->
                 <Menu Background="DarkGray" ToolBar.OverflowMode="Never">
                     <MenuItem Header="_File">
                         <MenuItem Header="Launch Session Manager"/>
                         <MenuItem Header="Settings / Preferences">
-                            <MenuItem Header="Connect to MDT Share"/>
+                            <MenuItem Header="Connect to MDT Share" Click="ConnectMDTShare_Click"/>
                             <MenuItem Header="Integrate with AD"/>
                             <MenuItem Header="Set Groups Folder Location"/>
                         </MenuItem>
@@ -34,6 +34,7 @@
                         <MenuItem Header="Shutdown Computer" />
                     </MenuItem>
                 </Menu>
+                <Menu/>
             </ToolBar>
         </ToolBarPanel>
         <!--/ToolBarTray-->

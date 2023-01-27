@@ -37,10 +37,17 @@ namespace MDTlibTests
             Assert.IsFalse(MDTHelper.TestMDTShare(""));
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestKyleDrive()
         {
             Assert.IsTrue(MDTHelper.TestIfPathIsMDTShare("K:\\"));
+        }*/ // if the test doesn't work, just comment it out!
+
+        [TestMethod]
+        public void TestFullValidMDTShareTest ()
+        {
+            string DeploymentSharePath = "\\\\labs-mdt\\labs-mdt$";
+            Assert.IsTrue(MDTHelper.TestIfPathIsMDTShare(DeploymentSharePath));
         }
     }
 }

@@ -9,14 +9,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CimSessionHelperLibrary", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CimSessionHelperLibraryTests", "CimSessionHelperLibraryTests\CimSessionHelperLibraryTests.csproj", "{C37CE409-B3A6-4383-B222-9A0C911A49A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTlib", "MDTlib\MDTlib.csproj", "{882B18EF-0C0A-4C25-9B7B-77257914D230}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTlib", "MDTlib\MDTlib.csproj", "{882B18EF-0C0A-4C25-9B7B-77257914D230}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTlibTests", "MDTlibTests\MDTlibTests.csproj", "{84939192-F8D9-484E-8380-887EF69BC337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTlibTests", "MDTlibTests\MDTlibTests.csproj", "{84939192-F8D9-484E-8380-887EF69BC337}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{825667F3-7145-4CB9-A222-C5A331ED8D26}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTAppLib", "MDTAppLib\MDTAppLib.csproj", "{C17F3EB3-98FE-4402-AC70-DEACEB61483E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTAppLibTests", "MDTAppLibTests\MDTAppLibTests.csproj", "{33C5806C-54F9-4B9A-8AE5-CAC25FF3A7F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +48,14 @@ Global
 		{84939192-F8D9-484E-8380-887EF69BC337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84939192-F8D9-484E-8380-887EF69BC337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84939192-F8D9-484E-8380-887EF69BC337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C17F3EB3-98FE-4402-AC70-DEACEB61483E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C17F3EB3-98FE-4402-AC70-DEACEB61483E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C17F3EB3-98FE-4402-AC70-DEACEB61483E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C17F3EB3-98FE-4402-AC70-DEACEB61483E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33C5806C-54F9-4B9A-8AE5-CAC25FF3A7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C5806C-54F9-4B9A-8AE5-CAC25FF3A7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C5806C-54F9-4B9A-8AE5-CAC25FF3A7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C5806C-54F9-4B9A-8AE5-CAC25FF3A7F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

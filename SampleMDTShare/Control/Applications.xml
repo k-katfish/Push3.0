@@ -1,0 +1,44 @@
+<applications>
+<application guid="{7995e94e-bf1f-49af-9077-67f2a42f69cc}" enable="True">
+<Name>Microsoft Office 365 16 (No Teams)</Name>
+<CreatedTime>10/28/2022 2:51:03 PM</CreatedTime>
+<CreatedBy>ENGR_DOM\techuser</CreatedBy>
+<LastModifiedTime>12/5/2022 3:30:19 PM</LastModifiedTime>
+<LastModifiedBy>ENGR_DOM\kkatfish</LastModifiedBy>
+<ShortName>Office 365</ShortName>
+<Version>16</Version>
+<Publisher>Microsoft</Publisher>
+<Language>English</Language>
+<CommandLine>setup.exe /configure ConfigurationNoTeams.xml</CommandLine>
+<WorkingDirectory>\\nasstore2.engr.colostate.edu\software\College\Microsoft\Office\Office 365</WorkingDirectory>
+<Reboot>False</Reboot>
+</application>
+
+<application guid="{945b3f1c-8e8a-4559-b700-f76ae3c7c049}" enable="True" hide="False">
+<Name>7Zip</Name>
+<CreatedTime>11/10/2022 2:52:18 PM</CreatedTime>
+<CreatedBy>ENGR_DOM\kkatfish</CreatedBy>
+<LastModifiedTime>11/15/2022 1:26:33 PM</LastModifiedTime>
+<LastModifiedBy>ENGR_DOM\kkatfish</LastModifiedBy>
+<ShortName>7Zip</ShortName>
+<Version>2201</Version>
+<Publisher></Publisher>
+<Language></Language>
+<Source>.\Applications\7Zip</Source><CommandLine>7z2201-x64.exe /S</CommandLine>
+<WorkingDirectory>.\Applications\7Zip</WorkingDirectory>
+</application>
+
+<application guid="{c01379a6-731d-4493-9f74-16257d6f4ea7}" enable="False" hide="True">
+<Name>MATLAB R2022A</Name>
+<CreatedTime>11/10/2022 11:53:15 PM</CreatedTime>
+<CreatedBy>ENGR_DOM\kkatfish</CreatedBy>
+<LastModifiedTime>1/13/2023 9:30:12 PM</LastModifiedTime>
+<LastModifiedBy>ENGR_DOM\kkatfish</LastModifiedBy>
+<ShortName>MATLAB</ShortName>
+<Version>R2022A</Version>
+<Publisher></Publisher>
+<Language></Language>
+<CommandLine>setup.exe -inputFile silent_kyle.txt</CommandLine>
+<WorkingDirectory>.\Applications\MATLAB R2022A</WorkingDirectory>
+</application>
+</applications>

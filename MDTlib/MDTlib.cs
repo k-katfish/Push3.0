@@ -2,13 +2,24 @@
 //using System.Security.Cryptography.X509Certificates;
 //using System.Diagnostics.Metrics;
 using Microsoft.Management.Infrastructure;
+using System.Collections;
+using System.ComponentModel;
+using System.Dynamic;
 using System.Runtime.InteropServices;
+using System.Xml.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 //using System.IO;
 //using System.Management;
 //using System.Reflection.Metadata.Ecma335;
 
 namespace MDTlib
 {
+    public class MDTTaskSequence
+    {
+
+    }
+
+
     public class DeploymentToolkit
     {
         private string DeploymentRoot;
