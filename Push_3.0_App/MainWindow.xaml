@@ -113,7 +113,7 @@
                     Width="345"
                     Margin="275,35,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" SelectionChanged="TSListFilter_SelectionChanged" />
         <ListBox x:Name="TSList"
                     Height="242"
                     Width="345"

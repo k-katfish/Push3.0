@@ -8,6 +8,9 @@ using System.Dynamic;
 using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
+using MDTAppLib;
+using MDTTSLib;
+using System.Diagnostics.CodeAnalysis;
 //using System.IO;
 //using System.Management;
 //using System.Reflection.Metadata.Ecma335;
@@ -19,6 +22,43 @@ namespace MDTlib
 
     }
 
+    public class ShareHelper
+    {
+        public event EventHandler ShareChanged;
+        public void OnShareChanged()
+        {
+            EventHandler handler = ShareChanged;
+            if (null != handler) handler(this, EventArgs.Empty);
+        }
+
+        applications MDTApps;
+        tss MDTTaskSequencs;
+        string ShareLocation;
+
+        public applications Apps {
+            get => this.MDTApps;
+            set => this.MDTApps = value;
+        }
+
+        public tss TaskSequences
+        {
+            get => this.MDTTaskSequencs;
+            set => this.MDTTaskSequencs = value;
+        }
+        
+        public string Location
+        {
+            get => this.ShareLocation;
+            set => this.ShareLocation = value;
+        }
+
+        public void Refresh ()
+        {
+            this.MDTTaskSequencs = MDTHelper.GetTaskSequencesFromShare(this.Location);
+            this.MDTApps = MDTHelper.GetApplicationsFromShare(this.Location);
+            OnShareChanged();
+        }
+    }
 
     public class DeploymentToolkit
     {
@@ -82,6 +122,26 @@ namespace MDTlib
         {
             //ManagementObject 
             return "";
+        }
+
+        public static applications GetApplicationsFromShare(string ShareLocation)
+        {
+            XmlSerializer MDTData = new XmlSerializer(typeof(applications));
+            FileStream MDTApplicationsXML = new FileStream($"{ShareLocation}\\Control\\Applications.xml", FileMode.Open);
+            applications MDTApplications = MDTData.Deserialize(MDTApplicationsXML) as applications;
+            MDTApplicationsXML.Close();
+
+            return MDTApplications;
+        }
+
+        public static tss GetTaskSequencesFromShare(string ShareLocation)
+        {
+            XmlSerializer MDTData = new XmlSerializer(typeof(tss));
+            FileStream MDTTSXML = new FileStream($"{ShareLocation}\\Control\\TaskSequences.xml", FileMode.Open);
+            tss MDTTS = MDTData.Deserialize(MDTTSXML) as tss;
+            MDTTSXML.Close();
+
+            return MDTTS;
         }
     }
 }

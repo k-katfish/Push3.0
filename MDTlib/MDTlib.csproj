@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
+    <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Microsoft.Management.Infrastructure">
       <HintPath>..\Microsoft.Management.Infrastructure.dll</HintPath>
     </Reference>
