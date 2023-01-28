@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 using MDTAppLib;
 using MDTTSLib;
+using MDTSettingsLib;
 using System.Diagnostics.CodeAnalysis;
 //using System.IO;
 //using System.Management;
@@ -22,7 +23,7 @@ namespace MDTlib
 
     }
 
-    public class ShareHelper
+    public class MDTShare
     {
         public event EventHandler ShareChanged;
         public void OnShareChanged()
@@ -31,9 +32,22 @@ namespace MDTlib
             if (null != handler) handler(this, EventArgs.Empty);
         }
 
+        Settings DeploymentShareSettings;
         applications MDTApps;
         tss MDTTaskSequencs;
         string ShareLocation;
+
+        public Settings settings
+        {
+            get => this.DeploymentShareSettings;
+            set => this.DeploymentShareSettings = value;
+        }
+
+        public string Name
+        {
+            get { return this.DeploymentShareSettings.Description; }
+            set { this.DeploymentShareSettings.Description = value; }
+        }
 
         public applications Apps {
             get => this.MDTApps;
@@ -54,18 +68,21 @@ namespace MDTlib
 
         public void Refresh ()
         {
-            this.MDTTaskSequencs = MDTHelper.GetTaskSequencesFromShare(this.Location);
-            this.MDTApps = MDTHelper.GetApplicationsFromShare(this.Location);
+#pragma warning disable CS8601
+            this.MDTTaskSequencs = tssHelper.GetTaskSequencesFromShare(this.Location);
+            this.MDTApps = applicationsHelper.GetApplicationsFromShare(this.Location);
+            this.DeploymentShareSettings = SettingsHelper.GetSettingsFromShare(this.Location);
+#pragma warning restore CS8601
             OnShareChanged();
         }
     }
 
-    public class DeploymentToolkit
+    /*public class DeploymentToolkit
     {
         private string DeploymentRoot;
         public DeploymentToolkit() { }
         public DeploymentToolkit(string DeploymentRoot) => this.DeploymentRoot = DeploymentRoot;
-    }
+    }*/
 
     public static class MDTHelper 
     {
@@ -124,24 +141,12 @@ namespace MDTlib
             return "";
         }
 
-        public static applications GetApplicationsFromShare(string ShareLocation)
+        public static string GetNameOfShare(string DeploySharePath)
         {
-            XmlSerializer MDTData = new XmlSerializer(typeof(applications));
-            FileStream MDTApplicationsXML = new FileStream($"{ShareLocation}\\Control\\Applications.xml", FileMode.Open);
-            applications MDTApplications = MDTData.Deserialize(MDTApplicationsXML) as applications;
-            MDTApplicationsXML.Close();
-
-            return MDTApplications;
-        }
-
-        public static tss GetTaskSequencesFromShare(string ShareLocation)
-        {
-            XmlSerializer MDTData = new XmlSerializer(typeof(tss));
-            FileStream MDTTSXML = new FileStream($"{ShareLocation}\\Control\\TaskSequences.xml", FileMode.Open);
-            tss MDTTS = MDTData.Deserialize(MDTTSXML) as tss;
-            MDTTSXML.Close();
-
-            return MDTTS;
+            if (!File.Exists($"{DeploySharePath}\\Control\\Settings.xml")) { return ""; }
+            Settings s = new();
+            s = SettingsHelper.GetSettingsFromShare(DeploySharePath);
+            return s.Description;
         }
     }
 }

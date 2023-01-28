@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Xml.Serialization;
 
 namespace MDTAppLib
 {
@@ -67,32 +68,36 @@ namespace MDTAppLib
 
     [SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [XmlTypeAttribute(AnonymousType = true)]
+    [XmlRootAttribute(Namespace = "", IsNullable = false)]
     public class applications : IEnumerable<application>
     {
-        List<application> apps = new System.Collections.Generic.List<application>();
+        List<application> apps = new List<application>();
 
-        public IEnumerator<application> GetEnumerator()
-        {
-            return ((IEnumerable<application>)apps).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable)apps).GetEnumerator();
-        }
+        public IEnumerator<application> GetEnumerator() { return ((IEnumerable<application>)apps).GetEnumerator(); }
+        IEnumerator IEnumerable.GetEnumerator() { return ((IEnumerable)apps).GetEnumerator(); }
 
         public void Add(application app) { this.apps.Add(app); }
         public void Remove(application app) { this.apps.Remove(app); }
-
-        public void Clear() { this.apps = new System.Collections.Generic.List<application>(); }
+        public void Clear() { this.apps = new List<application>(); }
         public bool Contains(application app) { return this.apps.Contains(app); }
-
         public int Count() { return this.apps.Count; }
 
         public application GetAt(int index) { return this.apps[index]; }
-
         public application this[int index] { get => this.apps[index]; set => this.apps[index] = value; }
+    }
+
+    public static class applicationsHelper
+    {
+        public static applications? GetApplicationsFromShare(string ShareLocation)
+        {
+            if (!File.Exists($"{ShareLocation}\\Control\\Applications.xml")) { return null; }
+            XmlSerializer MDTData = new XmlSerializer(typeof(applications));
+            FileStream MDTApplicationsXML = new FileStream($"{ShareLocation}\\Control\\Applications.xml", FileMode.Open);
+            applications MDTApplications = MDTData.Deserialize(MDTApplicationsXML) as applications;
+            MDTApplicationsXML.Close();
+
+            return MDTApplications;
+        }
     }
 }

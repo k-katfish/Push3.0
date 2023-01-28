@@ -18,6 +18,7 @@ using System.Xml.Serialization;
 using static MDTlib.MDTHelper;
 using System.Windows.Forms;
 using Path = System.IO.Path;
+using MDTSettingsLib;
 
 namespace Push_3._0_App
 {
@@ -26,12 +27,14 @@ namespace Push_3._0_App
     /// </summary>
     public partial class MDTShareEditWindow : Window
     {
-        ShareHelper share;
+        MDTShare share;
 
-        public MDTShareEditWindow(ShareHelper share)
+        public MDTShareEditWindow(MDTShare share)
         {
             this.share = share;
             InitializeComponent();
+            if (this.share.Location != null) { ShareLocationTextBox.Text = this.share.Location; }
+            if (this.share.settings != null) { ShareNameTextBox.Text = this.share.Name; }
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -40,33 +43,24 @@ namespace Push_3._0_App
             {
                 if (TestMDTShare(ShareLocationTextBox.Text))
                 {
-                    // get name of share from Control\Settings.xml... MDTLib?
+                    ShareNameTextBox.Text = MDTHelper.GetNameOfShare(ShareLocationTextBox.Text);
+                    // TODO: get name of share from Control\Settings.xml... MDTlib?
                     ConnectButton.Content = "Connect";
                 }
             }
             else if (ConnectButton.Content.Equals("Connect"))
             {
-                /* get available apps from applications.xml on MDT share */
                 this.share.Location = ShareLocationTextBox.Text;
                 this.share.Refresh();
                 this.Close();
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e) { /* Don't delete this method? */ }
 
-        }
+        private void ShareNameTextBox_TextChanged(object sender, TextChangedEventArgs e) { /* I think this has to stay here for some reason? */ }
 
-        private void ShareNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void CancelButton_Click(object sender, RoutedEventArgs e) { this.Close(); }
 
         private void BrowseToMDTShareButton_Click(object sender, RoutedEventArgs e)
         {

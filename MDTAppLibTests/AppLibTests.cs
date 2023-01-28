@@ -151,5 +151,14 @@ namespace MDTAppLibTests
             Assert.AreEqual(96, sampleApps.Count());
             Assert.AreEqual("npp.8.4.8.Installer.x64.exe /S", sampleApps[95].CommandLine);
         }
+
+        [TestMethod]
+        public void TestDeserializerMethod()
+        {
+            applications apps = new();
+            apps = applicationsHelper.GetApplicationsFromShare($"{AppDomain.CurrentDomain.BaseDirectory}..\\..\\..\\..\\SampleMDTShare");
+            Assert.AreEqual("Microsoft Office 365 16 (No Teams)", apps[0].Name);
+            Assert.AreEqual(".\\Applications\\MATLAB R2022A", apps[2].WorkingDirectory);
+        }
     }
 }

@@ -195,5 +195,15 @@ namespace MDTTSLibTests
             Assert.AreEqual("ReIamge.xml", sampleTSs[0].TaskSequenceTemplate);
             Assert.AreEqual(1, sampleTSs.Count());
         }
+
+        [TestMethod]
+        public void TestDeserializeMethod()
+        {
+            tss TSS = new();
+            TSS = tssHelper.GetTaskSequencesFromShare($"{AppDomain.CurrentDomain.BaseDirectory}..\\..\\..\\..\\SampleMDTShare");
+            Assert.AreEqual("Thin Client Image", TSS[0].Name);
+            Assert.AreEqual("ReIamge.xml", TSS[0].TaskSequenceTemplate);
+            Assert.AreEqual(1, TSS.Count());
+        }
     }
 }

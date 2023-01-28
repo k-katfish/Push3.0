@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
+    <ProjectReference Include="..\MDTSettingsLib\MDTSettingsLib.csproj" />
     <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
   </ItemGroup>
 

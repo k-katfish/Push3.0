@@ -14,11 +14,11 @@ namespace Push_3._0_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        ShareHelper share;
+        MDTShare share;
 
         public MainWindow()
         {
-            this.share = new ShareHelper();
+            this.share = new MDTShare();
             this.share.ShareChanged += Share_Changed;
 
             InitializeComponent();
@@ -49,7 +49,6 @@ namespace Push_3._0_App
 
         private void ConnectMDTShare_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Reading data from MDT Share...");
             MDTShareEditWindow sew = new MDTShareEditWindow(this.share);
             sew.Show();
         }
