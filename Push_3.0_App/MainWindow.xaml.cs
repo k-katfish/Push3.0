@@ -1,11 +1,12 @@
 ﻿using MDTlib;
-using System;
-using System.Windows;
 using MDTAppLib;
 using MDTTSLib;
+using System;
+using System.Windows;
 using System.IO;
 using System.Xml.Serialization;
 using System.Diagnostics;
+using ScanHost;
 
 namespace Push_3._0_App
 {
@@ -63,5 +64,24 @@ namespace Push_3._0_App
         }
 
         private void TSListFilter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e) { SetTSListContent(); }
+
+        private void StartRemoteDesktop_Click(object sender, RoutedEventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "C:\\Windows\\System32\\mstsc.exe";
+            process.StartInfo.Arguments = $"/v:{Computer_Name.Text}";
+            process.Start();
+        }
+
+        private void Computer_Name_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ScanComputer_Click(object sender, RoutedEventArgs e)
+        {
+            ScanHostWindow sh = new ScanHostWindow();
+            sh.Show();
+        }
     }
 }

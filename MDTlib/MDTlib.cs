@@ -106,18 +106,12 @@ namespace MDTlib
 
         public static bool TestMDTShare(string DeploymentRoot)
         {
-            //Console.WriteLine("Testing if " + DeploymentRoot + " is an MDT share");
             if (!(Directory.Exists($"{DeploymentRoot}\\Control"))) { return false; }
 
             string[] TestFiles = { $"{DeploymentRoot}\\Control\\Applications.xml", $"{DeploymentRoot}\\Control\\TaskSequences.xml" };
             foreach (string TestFile in TestFiles)
             {
-                //Console.WriteLine("Testing if " + TestFile + " exists...");
-                if (!(File.Exists(TestFile)))
-                {
-                    //Console.WriteLine("It does not");
-                    return false;
-                }
+                if (!(File.Exists(TestFile))) { return false; }
             }
             return true;
         }

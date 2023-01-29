@@ -86,7 +86,7 @@
                     Width="256"
                     Margin="625,75,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" TextChanged="Computer_Name_TextChanged" />
         <Button x:Name="InstallOnSingleMachine"
                     Content="Install on that Machine"
                     Height="25"
@@ -100,14 +100,14 @@
                     Width="256"
                     Margin="625,125,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" Click="StartRemoteDesktop_Click" />
         <Button x:Name="ScanComputer"
                     Content="Scan Computer"
                     Height="25"
                     Width="256"
                     Margin="625,150,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" Click="ScanComputer_Click" />
         <ComboBox x:Name="TSListFilter"
                     Height="25"
                     Width="345"

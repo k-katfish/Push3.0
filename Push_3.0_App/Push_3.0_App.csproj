@@ -10,12 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="MainWindow.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -23,6 +17,14 @@
     <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
     <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
     <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
+    <ProjectReference Include="..\ScanHost\ScanHost.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ScanHost.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
