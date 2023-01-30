@@ -22,6 +22,10 @@ namespace ScanHostLib
 
         public string CoresString { get => this.CPUCores.ToString(); set => this.CPUCores = int.Parse(value); }
         public string LogicalProcessorsString { get => this.CPULogicalCores.ToString(); set => this.CPULogicalCores = int.Parse(value); }
+        public override string ToString()
+        {
+            return $"{CPUName}\r\n{CPUSpeed} MHz\r\n{CPUCores} Cores\r\n{CPULogicalCores} Logical Processors";
+        }
     }
 
     public static class CPUInfoHelper

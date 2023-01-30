@@ -17,6 +17,7 @@
     <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
     <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
     <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
+    <ProjectReference Include="..\ScanHostLib\ScanHostLib.csproj" />
     <ProjectReference Include="..\ScanHost\ScanHost.csproj" />
   </ItemGroup>
 

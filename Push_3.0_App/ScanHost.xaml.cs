@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScanHostLib;
 
 namespace ScanHost
 {
@@ -23,6 +24,10 @@ namespace ScanHost
         public ScanHostWindow()
         {
             InitializeComponent();
+
+            ComputerInfo host = ScanHostHelper.Scan("localhost");   //TODO: Remember to change this
+            PIInfoBox.Text = host.CPU.ToString();
+            OSInfoBox.Text = host.OS.ToString();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

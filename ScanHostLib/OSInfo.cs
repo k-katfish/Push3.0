@@ -19,20 +19,20 @@ namespace ScanHostLib
         private DateTime OSInstallDate;
         private string OSRegisteredUser;
         private string OSOrganization;
-//       private string OSAvailableRAM;
+        //       private string OSAvailableRAM;
 
         public OSInfo() { }
         public OSInfo(string ComputerName, string Caption, string Version, DateTime LocalDateTime, DateTime LastBootTime, TimeSpan Uptime, DateTime InstallDate, string RegisteredUser, string Organization)
         {
-            OSComputerName   = ComputerName;
-            OSCaption        = Caption;
-            OSVersion        = Version;
-            OSLocalDateTime  = LocalDateTime;
-            OSLastBootTime   = LastBootTime;
-            OSUptime         = Uptime;
-            OSInstallDate    = InstallDate;
+            OSComputerName = ComputerName;
+            OSCaption = Caption;
+            OSVersion = Version;
+            OSLocalDateTime = LocalDateTime;
+            OSLastBootTime = LastBootTime;
+            OSUptime = Uptime;
+            OSInstallDate = InstallDate;
             OSRegisteredUser = RegisteredUser;
-            OSOrganization   = Organization;
+            OSOrganization = Organization;
         }
 
         public OSInfo(string ComputerName, string Caption, string Version, DateTime LocalDateTime, DateTime LastBootTime, DateTime InstallDate, string RegisteredUser, string Organization)
@@ -82,6 +82,19 @@ namespace ScanHostLib
         public bool Equals(OSInfo otherOsInfo)
         {
             return this.OSComputerName.Equals(otherOsInfo.OSComputerName) && this.OSRegisteredUser.Equals(otherOsInfo.RegisteredUser) && this.OSOrganization.Equals(otherOsInfo.OSOrganization);
+        }
+
+        public override string ToString()
+        {
+            return $"{OSComputerName}\r\n" +
+                   $"{OSCaption}\r\n" +
+                   $"{OSVersion}\r\n" +
+                   $"Current Time: {OSLocalDateTime}\r\n" +
+                   //$"Boot Time: {OSLastBootTime}\r\n" +
+                   $"Uptime: {OSUptime}\r\n" +
+                   $"Install Date: {OSInstallDate}\r\n" +
+                   $"Registered to: {OSRegisteredUser},\r\n" +
+                   $"{OSOrganization}";
         }
     }
 

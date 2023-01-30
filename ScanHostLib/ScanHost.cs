@@ -3,7 +3,7 @@ using Microsoft.Management.Infrastructure;
 
 namespace ScanHost
 {
-    public class ScanHost
+    public class ComputerInfo
     {
         private string ComputerName;
         private CPUInfo CPUInfo;
@@ -12,29 +12,34 @@ namespace ScanHost
         private NICInfo NICInfo;
         private OSInfo OSInfo;
 
-        public ScanHost() => this.ComputerName = "localhost";
-        public ScanHost(string ComputerName) => this.ComputerName = ComputerName;
+        public ComputerInfo() => this.ComputerName = "localhost";
+        public ComputerInfo(string ComputerName) => this.ComputerName = ComputerName;
 
         public string Name { get => this.ComputerName; set => this.ComputerName = value;  }
         public CPUInfo CPU { get => this.CPUInfo; set => this.CPUInfo = value; }
         public DiskInfo Disk { get => this.DiskInfo; set => this.DiskInfo = value; }
         public HardwareInfo Hardware { get => this.HardwareInfo; set => this.HardwareInfo = value; }
         public NICInfo NIC { get => this.NICInfo; set => this.NICInfo = value; }
-        public OSInfo Software { get => this.OSInfo; set => this.OSInfo = value; }
+        public OSInfo OS { get => this.OSInfo; set => this.OSInfo = value; }
+    }
 
-
-        private static class ScanHostHelper
+    public static class ScanHostHelper
+    {
+        public static ComputerInfo Scan(string ComputerName)
         {
-            public static ScanHost Scan(string ComputerName)
-            {
-                CimSession cs = CimSession.Create(ComputerName);
-                OSInfo info = OSInfoHelper.GetOSInfo(cs);
-                return new ScanHost();
-//                string Namespace = @"root\cimv2";
-//                string OSQuery = "SELECT * FROM Win32_OperatingSystem";
- //               CimSession mySession = CimSession.Create("Computer_B");
- //               IEnumerable<CimInstance> queryInstance = mySession.QueryInstances(Namespace, "WQL", OSQuery);
-            }
+            CimSession cs = CimSession.Create(ComputerName);
+            CPUInfo cpuInfo = CPUInfoHelper.GetInfo(cs);
+            OSInfo osInfo = OSInfoHelper.GetOSInfo(cs);
+
+            ComputerInfo computer = new();
+            computer.CPU = cpuInfo;
+            computer.OS = osInfo;
+
+            return computer;
+            //                string Namespace = @"root\cimv2";
+            //                string OSQuery = "SELECT * FROM Win32_OperatingSystem";
+            //               CimSession mySession = CimSession.Create("Computer_B");
+            //               IEnumerable<CimInstance> queryInstance = mySession.QueryInstances(Namespace, "WQL", OSQuery);
         }
     }
 }
