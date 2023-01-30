@@ -1,6 +1,9 @@
 using MDTTSLib;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
+#pragma warning disable CS8602
+#pragma warning disable CS8600
+
 
 namespace MDTTSLibTests
 {
@@ -207,3 +210,6 @@ namespace MDTTSLibTests
         }
     }
 }
+
+#pragma warning restore CS8602
+#pragma warning restore CS8600
