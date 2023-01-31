@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Management.Infrastructure" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Management.Infrastructure.Runtime.Unix" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Management.Infrastructure.Runtime.Win" Version="2.0.0" />
+    <PackageReference Include="System.Management.Automation" Version="6.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
+    <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
+  </ItemGroup>
+
+</Project>

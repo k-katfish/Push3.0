@@ -18,17 +18,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTAppLib", "MDTAppLib\MDTA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTAppLibTests", "MDTAppLibTests\MDTAppLibTests.csproj", "{33C5806C-54F9-4B9A-8AE5-CAC25FF3A7F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTTSLib", "MDTTSLib\MDTTSLib.csproj", "{48F4F826-3632-4B1A-968C-9B9B64181EA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTTSLib", "MDTTSLib\MDTTSLib.csproj", "{48F4F826-3632-4B1A-968C-9B9B64181EA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTTSLibTests", "MDTTSLibTests\MDTTSLibTests.csproj", "{DEE6C17F-73B3-4A1D-B065-360248D847E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTTSLibTests", "MDTTSLibTests\MDTTSLibTests.csproj", "{DEE6C17F-73B3-4A1D-B065-360248D847E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTSettingsLib", "MDTSettingsLib\MDTSettingsLib.csproj", "{721717E6-1720-4B88-A9CD-ACB5C0B1CF35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTSettingsLib", "MDTSettingsLib\MDTSettingsLib.csproj", "{721717E6-1720-4B88-A9CD-ACB5C0B1CF35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDTSettingsLibTests", "MDTSettingsLibTests\MDTSettingsLibTests.csproj", "{D36EF9FE-7D35-49FE-BBB0-DAB453FE69A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTSettingsLibTests", "MDTSettingsLibTests\MDTSettingsLibTests.csproj", "{D36EF9FE-7D35-49FE-BBB0-DAB453FE69A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanHostLib", "ScanHostLib\ScanHostLib.csproj", "{C719B337-7AD6-40FC-B2A0-01A03ABE7B00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanHostLib", "ScanHostLib\ScanHostLib.csproj", "{C719B337-7AD6-40FC-B2A0-01A03ABE7B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanHostLibTests", "ScanHostLibTests\ScanHostLibTests.csproj", "{E65768D7-4332-48AE-BE83-2E6261798198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanHostLibTests", "ScanHostLibTests\ScanHostLibTests.csproj", "{E65768D7-4332-48AE-BE83-2E6261798198}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{4D3E26FE-D626-47FA-AF33-53D4EAE770D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallSoftwareLib", "InstallSoftwareLib\InstallSoftwareLib.csproj", "{63AA739A-43CD-44E7-96C0-2BFA535E456B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +84,12 @@ Global
 		{E65768D7-4332-48AE-BE83-2E6261798198}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65768D7-4332-48AE-BE83-2E6261798198}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E65768D7-4332-48AE-BE83-2E6261798198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3E26FE-D626-47FA-AF33-53D4EAE770D1}.Debug|Any CPU.ActiveCfg = Debug
+		{4D3E26FE-D626-47FA-AF33-53D4EAE770D1}.Release|Any CPU.ActiveCfg = Release
+		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
