@@ -74,6 +74,10 @@ namespace MDTTSLib
         public ts() { }
         public ts(string Name) => this.Name = Name;
         public bool Equals(ts other) { return this.Guid == other.Guid; }
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 
     [SerializableAttribute()]

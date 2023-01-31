@@ -70,7 +70,7 @@
                     Width="256"
                     Margin="16,385,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" Click="InstallOnMultipleMachines_Click" />
         <Label x:Name="Manual_Section_Header"
                     Content="Work on a single computer"
                     Margin="625,30,0,0"
@@ -93,7 +93,7 @@
                     Width="256"
                     Margin="625,100,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" Click="InstallOnSingleMachine_Click" />
         <Button x:Name="StartRemoteDesktop"
                     Content="Remote Desktop"
                     Height="25"

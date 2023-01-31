@@ -1,6 +1,7 @@
 ﻿using MDTlib;
 using MDTAppLib;
 using MDTTSLib;
+using InstallSoftwareLib;
 using System;
 using System.Windows;
 using System.IO;
@@ -39,7 +40,7 @@ namespace Push_3._0_App
             } else if (TSListFilter.SelectedItem.Equals("Task Sequences") && this.share.TaskSequences != null)
             {
                 foreach (ts TS in this.share.TaskSequences)
-                { TSList.Items.Add(TS.Name); }
+                { TSList.Items.Add(TS); }
             }
         }
 
@@ -82,6 +83,40 @@ namespace Push_3._0_App
         {
             ScanHostWindow sh = new ScanHostWindow();
             sh.Show();
+        }
+
+        private void InstallOnSingleMachine_Click(object sender, RoutedEventArgs e)
+        {
+            if (TSListFilter.SelectedItem.Equals("Applications"))
+            {
+                // install
+                applications apps = (applications)TSList.SelectedItems;
+                InstallSoftware.InstallApp(apps, Computer_Name.Text);
+            } 
+            else if (TSListFilter.SelectedItem.Equals("Task Sequences"))
+            {
+                // runts
+                ts SelectedTaskSequence = (ts)TSList.SelectedItem;
+                InstallSoftware.RunTS(SelectedTaskSequence, Computer_Name.Text);
+            }
+        }
+
+        private void InstallOnMultipleMachines_Click(object sender, RoutedEventArgs e)
+        {
+            if (TSListFilter.SelectedItem.Equals("Applications"))
+            {
+                // install
+                applications apps = (applications)TSList.SelectedItems;
+                string[] ComputerNames = (string[])Computer_List.SelectedItems;
+                InstallSoftware.InstallApp(apps, ComputerNames);
+            }
+            else if (TSListFilter.SelectedItem.Equals("Task Sequences"))
+            {
+                // runts
+                ts SelectedTaskSequence = (ts)TSList.SelectedItem;
+                string[] ComputerNames = (string[])Computer_List.SelectedItems;
+                InstallSoftware.RunTS(SelectedTaskSequence, ComputerNames);
+            }
         }
     }
 }
