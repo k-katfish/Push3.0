@@ -1,13 +1,16 @@
 ﻿using MDTlib;
 using MDTAppLib;
 using MDTTSLib;
-using InstallSoftwareLib;
+//using InstallSoftwareLib;
+using RunTSLib;
 using System;
 using System.Windows;
 using System.IO;
 using System.Xml.Serialization;
 using System.Diagnostics;
 using ScanHost;
+using System.Security;
+using System.Windows.Media.Animation;
 
 namespace Push_3._0_App
 {
@@ -17,6 +20,7 @@ namespace Push_3._0_App
     public partial class MainWindow : Window
     {
         MDTShare share;
+        SecureString password;
 
         public MainWindow()
         {
@@ -36,17 +40,34 @@ namespace Push_3._0_App
             if (TSListFilter.SelectedItem.Equals("Applications") && this.share.Apps != null)
             {
                 foreach (application app in this.share.Apps)
-                { TSList.Items.Add(app.Name); }
+                {
+                    if (app.Name.ToLower().Contains(SearchTS.Text.ToLower()))
+                    {
+                        TSList.Items.Add(app);
+                    }
+                }
             } else if (TSListFilter.SelectedItem.Equals("Task Sequences") && this.share.TaskSequences != null)
             {
                 foreach (ts TS in this.share.TaskSequences)
-                { TSList.Items.Add(TS); }
+                {
+                    if (TS.Name.ToLower().Contains(SearchTS.Text.ToLower()))
+                    {
+                        TSList.Items.Add(TS);
+                    }
+                }
             }
         }
 
         private void Share_Changed(object? sender, EventArgs e)
         {
             SetTSListContent();
+        }
+
+        private void SetCredential_Click(object? sender, EventArgs e)
+        {
+            GetPW pW= new GetPW();
+            pW.ShowDialog();
+            this.password = pW.Password;
         }
 
         private void ConnectMDTShare_Click(object sender, RoutedEventArgs e)
@@ -90,20 +111,20 @@ namespace Push_3._0_App
             if (TSListFilter.SelectedItem.Equals("Applications"))
             {
                 // install
-                applications apps = (applications)TSList.SelectedItems;
-                InstallSoftware.InstallApp(apps, Computer_Name.Text);
+                application app = (application)TSList.SelectedItem;
+                InstallSoftware.InstallApp(password, app, Computer_Name.Text, Environment.UserName, Environment.UserDomainName);
             } 
             else if (TSListFilter.SelectedItem.Equals("Task Sequences"))
             {
                 // runts
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
-                InstallSoftware.RunTS(SelectedTaskSequence, Computer_Name.Text);
+                InstallSoftware.RunTS(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName);
             }
         }
 
         private void InstallOnMultipleMachines_Click(object sender, RoutedEventArgs e)
         {
-            if (TSListFilter.SelectedItem.Equals("Applications"))
+        /*    if (TSListFilter.SelectedItem.Equals("Applications"))
             {
                 // install
                 applications apps = (applications)TSList.SelectedItems;
@@ -116,7 +137,10 @@ namespace Push_3._0_App
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
                 string[] ComputerNames = (string[])Computer_List.SelectedItems;
                 InstallSoftware.RunTS(SelectedTaskSequence, ComputerNames);
-            }
+            }*/
         }
+
+        private void SearchTS_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        { SetTSListContent(); }
     }
 }

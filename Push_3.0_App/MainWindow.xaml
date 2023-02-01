@@ -18,6 +18,7 @@
                             <MenuItem Header="Connect to MDT Share" Click="ConnectMDTShare_Click"/>
                             <MenuItem Header="Integrate with AD"/>
                             <MenuItem Header="Set Groups Folder Location"/>
+                            <MenuItem Header="Set Credential" Click="SetCredential_Click"/>
                         </MenuItem>
                         <MenuItem Header="Exit" Click="Exit_Click"/>
                     </MenuItem>
@@ -132,7 +133,7 @@
                     Width="190"
                     Margin="330,310,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" TextChanged="SearchTS_TextChanged" />
         <CheckBox x:Name="ShowHidden"
                     Content="Show Hidden"
                     Height="25"

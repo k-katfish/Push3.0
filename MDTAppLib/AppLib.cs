@@ -64,6 +64,11 @@ namespace MDTAppLib
         public application(string Name) => this.Name = Name;
 
         public bool Equals (application other) { return this.Name == other.Name; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 
     [SerializableAttribute()]
@@ -96,6 +101,15 @@ namespace MDTAppLib
             FileStream MDTApplicationsXML = new FileStream($"{ShareLocation}\\Control\\Applications.xml", FileMode.Open);
             applications MDTApplications = MDTData.Deserialize(MDTApplicationsXML) as applications;
             MDTApplicationsXML.Close();
+
+            foreach (application app in MDTApplications)
+            {
+                if (app.WorkingDirectory == null) { continue; }
+                if (app.WorkingDirectory.StartsWith(@".\"))
+                {
+                    app.WorkingDirectory = ShareLocation + app.WorkingDirectory.Substring(1);
+                }
+            }
 
             return MDTApplications;
         }

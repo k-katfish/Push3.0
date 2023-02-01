@@ -72,6 +72,13 @@ namespace MDTlib
             this.MDTTaskSequencs = tssHelper.GetTaskSequencesFromShare(this.Location);
             this.MDTApps = applicationsHelper.GetApplicationsFromShare(this.Location);
             this.DeploymentShareSettings = SettingsHelper.GetSettingsFromShare(this.Location);
+
+            /*foreach (var app in this.MDTApps)
+            {
+                if (app.WorkingDirectory.ToString().StartsWith(@".\")) {
+                    app.WorkingDirectory = this.Location + app.WorkingDirectory.Substring(2);
+                }
+            }*/
 #pragma warning restore CS8601
             OnShareChanged();
         }

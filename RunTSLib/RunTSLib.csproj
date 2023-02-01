@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,26 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <COMReference Include="Microsoft.Vbe.Interop.Forms">
-      <WrapperTool>tlbimp</WrapperTool>
-      <VersionMinor>0</VersionMinor>
-      <VersionMajor>2</VersionMajor>
-      <Guid>0d452ee1-e08f-101a-852e-02608c4d0bb4</Guid>
-      <Lcid>0</Lcid>
-      <Isolated>false</Isolated>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.Management.Infrastructure" Version="2.0.0" />
     <PackageReference Include="Microsoft.Management.Infrastructure.Runtime.Unix" Version="2.0.0" />
     <PackageReference Include="Microsoft.Management.Infrastructure.Runtime.Win" Version="2.0.0" />
-    <PackageReference Include="System.Management.Automation" Version="6.2.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
+    <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
     <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
   </ItemGroup>
 

@@ -28,7 +28,7 @@ namespace MDTTSLib
         public string CreatedBy { get { return this.createdByField; } set { this.createdByField = value; } }
         public string LastModifiedTime { get { return this.lastModifiedTimeField; } set { this.lastModifiedTimeField = value; } }
         public string LastModifiedBy { get { return this.lastModifiedByField; } set { this.lastModifiedByField = value; } }
-        public string Id { get { return this.idField; } set { this.idField = value; } }
+        public string ID { get { return this.idField; } set { this.idField = value; } }
         public string Version { get { return this.versionField; } set { this.versionField = value; } }
         public string TaskSequenceTemplate { get { return this.taskSequenceTemplateField; } set { this.taskSequenceTemplateField = value; } }
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -76,7 +76,7 @@ namespace MDTTSLib
         public bool Equals(ts other) { return this.Guid == other.Guid; }
         public override string ToString()
         {
-            return this.Name;
+            return this.ID.ToString();
         }
     }
 

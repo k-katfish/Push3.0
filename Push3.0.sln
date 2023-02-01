@@ -32,7 +32,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScanHostLibTests", "ScanHos
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{4D3E26FE-D626-47FA-AF33-53D4EAE770D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstallSoftwareLib", "InstallSoftwareLib\InstallSoftwareLib.csproj", "{63AA739A-43CD-44E7-96C0-2BFA535E456B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstallSoftwareLib", "InstallSoftwareLib\InstallSoftwareLib.csproj", "{63AA739A-43CD-44E7-96C0-2BFA535E456B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsCredential", "CsCredential\CsCredential.csproj", "{ADD5159B-85F7-4259-8EFF-C390F795D22F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunTSLib", "RunTSLib\RunTSLib.csproj", "{52279627-17CA-4B5A-828E-A47D0CF9778F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +94,14 @@ Global
 		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63AA739A-43CD-44E7-96C0-2BFA535E456B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD5159B-85F7-4259-8EFF-C390F795D22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD5159B-85F7-4259-8EFF-C390F795D22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD5159B-85F7-4259-8EFF-C390F795D22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD5159B-85F7-4259-8EFF-C390F795D22F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52279627-17CA-4B5A-828E-A47D0CF9778F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52279627-17CA-4B5A-828E-A47D0CF9778F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52279627-17CA-4B5A-828E-A47D0CF9778F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52279627-17CA-4B5A-828E-A47D0CF9778F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
