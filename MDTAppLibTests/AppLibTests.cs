@@ -114,6 +114,9 @@ namespace MDTAppLibTests
             application MyApp2 = new application("MyApp2");
             applications apps = new applications {MyApp1, MyApp2};
             XmlSerializer MySerializer = new XmlSerializer(typeof(applications));
+
+            File.Delete($"{TestDataFolderRoot}\\TestAppData.xml");
+
             FileStream TestApplicationsFile = new FileStream($"{TestDataFolderRoot}\\TestAppData.xml", FileMode.OpenOrCreate);
             MySerializer.Serialize(TestApplicationsFile, apps);
             TestApplicationsFile.Close();
@@ -160,7 +163,7 @@ namespace MDTAppLibTests
             applications apps = new();
             apps = applicationsHelper.GetApplicationsFromShare($"{AppDomain.CurrentDomain.BaseDirectory}..\\..\\..\\..\\SampleMDTShare");
             Assert.AreEqual("Microsoft Office 365 16 (No Teams)", apps[0].Name);
-            Assert.AreEqual(".\\Applications\\MATLAB R2022A", apps[2].WorkingDirectory);
+            Assert.AreEqual($"{AppDomain.CurrentDomain.BaseDirectory}..\\..\\..\\..\\SampleMDTShare\\Applications\\MATLAB R2022A", apps[2].WorkingDirectory);
         }
     }
 }
