@@ -8,7 +8,7 @@
         Title="Push 3.0" Height="450" Width="900">
     <Grid>
         <ToolBarPanel DockPanel.Dock="Top">
-            <ToolBar Name="MainToolBar" Height="30" Background="DarkGray" ToolBarTray.IsLocked="True" Margin="0,0,-13,0" Width="929" Header="">
+            <ToolBar x:Name="MainToolBar" Height="30" Background="DarkGray" ToolBarTray.IsLocked="True" Width="858" Header="" Loaded="MainToolBar_Loaded">
                 <!--Button Name="TBFile" Content="File"/>
                 <Button Name="TBComputer" Content="Manage Computer"/-->
                 <Menu Background="DarkGray" ToolBar.OverflowMode="Never">

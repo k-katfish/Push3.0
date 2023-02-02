@@ -11,6 +11,7 @@ using System.Diagnostics;
 using ScanHost;
 using System.Security;
 using System.Windows.Media.Animation;
+using System.Windows.Controls;
 
 namespace Push_3._0_App
 {
@@ -33,6 +34,24 @@ namespace Push_3._0_App
             TSListFilter.Items.Add("Task Sequences");
             TSListFilter.SelectedIndex = 0;
         }
+
+
+        private void MainToolBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            ToolBar toolBar = sender as ToolBar;
+            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            if (overflowGrid != null)
+            {
+                overflowGrid.Visibility = Visibility.Collapsed;
+            }
+
+            var mainPanelBorder = toolBar.Template.FindName("MainPanelBorder", toolBar) as FrameworkElement;
+            if (mainPanelBorder != null)
+            {
+                mainPanelBorder.Margin = new Thickness(0);
+            }
+        }
+
 
         private void SetTSListContent()
         {
