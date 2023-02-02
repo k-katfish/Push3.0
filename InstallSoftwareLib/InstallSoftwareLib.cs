@@ -34,7 +34,7 @@ namespace InstallSoftwareLib
 
         public static void RunTS(ts TaskSequence, CimSession Session)
         {
-            string Command = $"pushd {/*DeploymentShareLocation*/TaskSequence}&&cscript.exe Scripts\\LiteTouch.wsf /OSDComputerName:%COMPUTERNAME% /TaskSequenceID:{TaskSequence.Id} /SKIPTaskSequence:YES /SKIPComputerName:YES";
+            string Command = $"pushd {/*DeploymentShareLocation*/TaskSequence}&&cscript.exe Scripts\\LiteTouch.wsf /OSDComputerName:%COMPUTERNAME% /TaskSequenceID:{TaskSequence.ID} /SKIPTaskSequence:YES /SKIPComputerName:YES";
             //InvokeCMD(Command, Session);
         }
 
