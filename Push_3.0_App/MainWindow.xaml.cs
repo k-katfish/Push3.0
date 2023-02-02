@@ -76,6 +76,12 @@ namespace Push_3._0_App
             sew.Show();
         }
 
+        private void QuickConfig_Click(object? sender, RoutedEventArgs e)
+        {
+            ConnectMDTShare_Click(sender, e);
+            SetCredential_Click(sender, e);
+        }
+
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Process process = new Process();
