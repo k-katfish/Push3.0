@@ -32,6 +32,7 @@ namespace Push_3._0_App
 
             TSListFilter.Items.Add("Applications");
             TSListFilter.Items.Add("Task Sequences");
+            TSListFilter.Items.Add("Fixes & Scripts");
             TSListFilter.SelectedIndex = 0;
         }
 
@@ -60,27 +61,23 @@ namespace Push_3._0_App
             {
                 foreach (application app in this.share.Apps)
                 {
+                    if (ShowHidden.IsChecked == false && (app.hide.Equals("false") || app.enable.Equals("false"))) { continue; }
                     if (app.Name.ToLower().Contains(SearchTS.Text.ToLower()))
-                    {
-                        TSList.Items.Add(app);
-                    }
+                    { TSList.Items.Add(app); }
                 }
             } else if (TSListFilter.SelectedItem.Equals("Task Sequences") && this.share.TaskSequences != null)
             {
                 foreach (ts TS in this.share.TaskSequences)
                 {
+                    if (ShowHidden.IsChecked == false && (TS.Enable.Equals("false"))) { continue; }
                     if (TS.Name.ToLower().Contains(SearchTS.Text.ToLower()))
-                    {
-                        TSList.Items.Add(TS);
-                    }
+                    { TSList.Items.Add(TS); }
                 }
             }
         }
 
         private void Share_Changed(object? sender, EventArgs e)
-        {
-            SetTSListContent();
-        }
+        { SetTSListContent(); }
 
         private void SetCredential_Click(object? sender, EventArgs e)
         {
@@ -122,7 +119,7 @@ namespace Push_3._0_App
 
         private void Computer_Name_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
+            // TODO: do the 'see if computer is online' thing, it should be easy in c#
         }
 
         private void ScanComputer_Click(object sender, RoutedEventArgs e)

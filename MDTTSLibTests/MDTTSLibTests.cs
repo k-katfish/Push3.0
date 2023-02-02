@@ -58,8 +58,8 @@ namespace MDTTSLibTests
         [TestMethod]
         public void TestIDField()
         {
-            myTS.Id = "myTS";
-            Assert.AreEqual("myTS", myTS.Id);
+            myTS.ID = "myTS";
+            Assert.AreEqual("myTS", myTS.ID);
         }
 
         [TestMethod]
