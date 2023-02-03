@@ -27,7 +27,11 @@ namespace FixesAndScriptsLibTests
         }
 
         [TestMethod]
-        public void TestReadFolderContents() { 
+        public void TestIncludingHiddenItems() {
+            Fixes fixes = FixesHelper.GetFixes(SampleShare);
+            DirectoryInfo HiddenDir = new DirectoryInfo($"{SampleShare}\\Fixes\\Hidden Fix"); 
+            Assert.IsNotNull(fixes);
+            Assert.AreEqual(fixes[2].WorkingDirectory, HiddenDir.FullName);
         }
     }
 }

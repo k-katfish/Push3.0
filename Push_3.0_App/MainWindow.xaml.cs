@@ -1,8 +1,12 @@
-﻿using MDTlib;
+﻿// librarys written for push
+using MDTlib;
 using MDTAppLib;
 using MDTTSLib;
+using FixesAndScriptsLib;
 //using InstallSoftwareLib;
 using RunTSLib;
+
+// libraries that exist beyond push
 using System;
 using System.Windows;
 using System.IO;
@@ -12,6 +16,7 @@ using ScanHost;
 using System.Security;
 using System.Windows.Media.Animation;
 using System.Windows.Controls;
+using System.Configuration.ConfiguraitonManager;
 
 namespace Push_3._0_App
 {
@@ -65,13 +70,25 @@ namespace Push_3._0_App
                     if (app.Name.ToLower().Contains(SearchTS.Text.ToLower()))
                     { TSList.Items.Add(app); }
                 }
-            } else if (TSListFilter.SelectedItem.Equals("Task Sequences") && this.share.TaskSequences != null)
+            } 
+            
+            else if (TSListFilter.SelectedItem.Equals("Task Sequences") && this.share.TaskSequences != null)
             {
                 foreach (ts TS in this.share.TaskSequences)
                 {
                     if (ShowHidden.IsChecked == false && (TS.Enable.Equals("false"))) { continue; }
                     if (TS.Name.ToLower().Contains(SearchTS.Text.ToLower()))
                     { TSList.Items.Add(TS); }
+                }
+            }
+            
+            else if (TSListFilter.SelectedItem.Equals("Fixes & Scripts") && this.share.TaskSequences != null)
+            {
+                foreach (Fix fix in this.share.fixes)
+                {
+                    //if (ShowHidden.IsChecked == false && (fix.hide.Equals("false") || fix.enable.Equals("false"))) { continue; }
+                    if (fix.Name.ToLower().Contains(SearchTS.Text.ToLower()))
+                    { TSList.Items.Add(fix); }
                 }
             }
         }
