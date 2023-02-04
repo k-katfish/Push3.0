@@ -11,6 +11,7 @@ using static System.Net.Mime.MediaTypeNames;
 using MDTAppLib;
 using MDTTSLib;
 using MDTSettingsLib;
+using FixesAndScriptsLib;
 using System.Diagnostics.CodeAnalysis;
 //using System.IO;
 //using System.Management;
@@ -18,11 +19,6 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace MDTlib
 {
-    public class MDTTaskSequence
-    {
-
-    }
-
     public class MDTShare
     {
         public event EventHandler ShareChanged;
@@ -32,46 +28,54 @@ namespace MDTlib
             if (null != handler) handler(this, EventArgs.Empty);
         }
 
-        Settings DeploymentShareSettings;
-        applications MDTApps;
-        tss MDTTaskSequencs;
-        string ShareLocation;
+        Settings _settings;
+        applications _apps;
+        tss _tss;
+        Fixes _fixes;
+        string _location;
 
         public Settings settings
         {
-            get => this.DeploymentShareSettings;
-            set => this.DeploymentShareSettings = value;
+            get => this._settings;
+            set => this._settings = value;
         }
 
         public string Name
         {
-            get { return this.DeploymentShareSettings.Description; }
-            set { this.DeploymentShareSettings.Description = value; }
+            get { return this._settings.Description; }
+            set { this._settings.Description = value; }
         }
 
         public applications Apps {
-            get => this.MDTApps;
-            set => this.MDTApps = value;
+            get => this._apps;
+            set => this._apps = value;
         }
 
         public tss TaskSequences
         {
-            get => this.MDTTaskSequencs;
-            set => this.MDTTaskSequencs = value;
+            get => this._tss;
+            set => this._tss = value;
+        }
+
+        public Fixes fixes
+        {
+            get => this._fixes;
+            set => this._fixes = value;
         }
         
         public string Location
         {
-            get => this.ShareLocation;
-            set => this.ShareLocation = value;
+            get => this._location;
+            set => this._location = value;
         }
 
         public void Refresh ()
         {
 #pragma warning disable CS8601
-            this.MDTTaskSequencs = tssHelper.GetTaskSequencesFromShare(this.Location);
-            this.MDTApps = applicationsHelper.GetApplicationsFromShare(this.Location);
-            this.DeploymentShareSettings = SettingsHelper.GetSettingsFromShare(this.Location);
+            this._tss = tssHelper.GetTaskSequencesFromShare(this.Location);
+            this._apps = applicationsHelper.GetApplicationsFromShare(this.Location);
+            this._settings = SettingsHelper.GetSettingsFromShare(this.Location);
+            this._fixes = FixesHelper.GetFixes(this.Location);
 
             /*foreach (var app in this.MDTApps)
             {
