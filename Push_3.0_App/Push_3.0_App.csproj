@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ADHelperLib\ADHelperLib.csproj" />
     <ProjectReference Include="..\FixesAndScriptsLib\FixesAndScriptsLib.csproj" />
     <ProjectReference Include="..\InstallSoftwareLib\InstallSoftwareLib.csproj" />
     <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />

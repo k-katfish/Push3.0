@@ -3,6 +3,7 @@ using MDTlib;
 using MDTAppLib;
 using MDTTSLib;
 using FixesAndScriptsLib;
+using ADHelperLib;
 //using InstallSoftwareLib;
 using RunTSLib;
 
@@ -58,7 +59,6 @@ namespace Push_3._0_App
             }
         }
 
-
         private void SetTSListContent()
         {
             TSList.Items.Clear();
@@ -107,6 +107,23 @@ namespace Push_3._0_App
         {
             MDTShareEditWindow sew = new MDTShareEditWindow(this.share);
             sew.Show();
+        }
+
+        private void ConnectAD_Click(object sender, RoutedEventArgs e)
+        {
+            OUs ous = ADHelper.GetOUs(ADHelper.GetCurrentDomain());
+            foreach (OU ou in ous)
+            {
+                SelectGroup.Items.Add(ou);
+            }
+        }
+
+        private void SelectGroup_SelectionChanged(object? sender, EventArgs e)
+        {
+            foreach (Computer computer in (SelectGroup.SelectedItem as OU))
+            {
+                ComputerList.Items.Add(computer);
+            }
         }
 
         private void QuickConfig_Click(object? sender, RoutedEventArgs e)

@@ -33,7 +33,7 @@ namespace ADHelperLib
         public int CompareTo(Computer? other) { return Name.CompareTo(other.Name); }
     }
 
-    internal class Computers : IEnumerable<Computer>
+    public class Computers : IEnumerable<Computer>
     {
         List<Computer> _computers;
 
@@ -101,7 +101,7 @@ namespace ADHelperLib
         }
     }
 
-    internal class OUs : IEnumerable<OU>
+    public class OUs : IEnumerable<OU>
     {
         List<OU> _ous;
 
@@ -197,7 +197,7 @@ namespace ADHelperLib
             return result;
         }
 
-        internal static OUs GetOUs(string SearchBase)
+        public static OUs GetOUs(string SearchBase)
         {
             DirectoryEntry directory = new DirectoryEntry("LDAP://" + SearchBase);//GetLDAPDomainPath());
             DirectorySearcher search = new DirectorySearcher(directory);

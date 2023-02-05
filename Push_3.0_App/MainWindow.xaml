@@ -17,7 +17,7 @@
                         <MenuItem Header="Quick Configure" Click="QuickConfig_Click"/>
                         <MenuItem Header="Settings / Preferences">
                             <MenuItem Header="Connect to MDT Share" Click="ConnectMDTShare_Click"/>
-                            <MenuItem Header="Integrate with AD"/>
+                            <MenuItem Header="Integrate with AD" Click="ConnectAD_Click"/>
                             <MenuItem Header="Set Groups Folder Location"/>
                             <MenuItem Header="Set Credential" Click="SetCredential_Click"/>
                         </MenuItem>
@@ -40,12 +40,13 @@
             </ToolBar>
         </ToolBarPanel>
         <!--/ToolBarTray-->
-        <ComboBox x:Name="Select_Group"
+        <ComboBox x:Name="SelectGroup"
                     Width="256"
                     Height="25"
                     Margin="16,35,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top" 
+                    SelectionChanged="SelectGroup_SelectionChanged"/>
         <Button x:Name = "Select_All"
                     Content="Select All"
                     Width="128"
@@ -60,7 +61,7 @@
                     Margin="144,60,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top" />
-        <ListBox x:Name="Computer_List"
+        <ListBox x:Name="ComputerList"
                     Height="300"
                     Width="256"
                     Margin="16,85,0,0"
