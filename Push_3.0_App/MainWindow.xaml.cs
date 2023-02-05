@@ -120,6 +120,7 @@ namespace Push_3._0_App
 
         private void SelectGroup_SelectionChanged(object? sender, EventArgs e)
         {
+            ComputerList.Items.Clear();
             foreach (Computer computer in (SelectGroup.SelectedItem as OU))
             {
                 ComputerList.Items.Add(computer);
