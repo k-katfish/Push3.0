@@ -61,6 +61,14 @@ namespace ADHelperLibTests
         }
 
         [TestMethod]
+        public void TestGetADOU()
+        {
+            OUs ous = ADHelper.GetOUs("OU=Labs,DC=engr,DC=ColoState,DC=EDU");
+            OU testOU = new OU("Workstations", "LDAP://OU=Workstations,OU=Labs,DC=engr,DC=ColoState,DC=EDU", "OU=Workstations,OU=Labs,DC=engr,DC=ColoState,DC=EDU");
+            Assert.IsTrue(ous.Contains(testOU));
+        }
+
+        [TestMethod]
         public void TestGetDomainString() 
         {
             Assert.AreEqual("engr.ColoState.EDU", ADHelper.GetDomainString());

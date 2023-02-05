@@ -49,14 +49,15 @@ namespace ADHelperLib
         public void Sort() { _computers.Sort(); }
     }
 
-    public class OU : IEnumerable, IEnumerable<Computer>, IEnumerable<OU> 
+    public class OU : IEnumerable, IEnumerable<Computer>, IComparable //, IEnumerable<OU> 
     {
         private readonly string _Name;
         private readonly string _ADSearchBase;
+        private readonly string _DistinguishedName;
         private readonly string _FriendlyString;
 
         private Computers _ChildComputers;
-        private List<OU> _ChildOUs;
+        //private List<OU> _ChildOUs;
         
 
         public OU(Principal p) 
@@ -64,17 +65,56 @@ namespace ADHelperLib
             _Name = p.Name;
             _ADSearchBase = p.DistinguishedName;
             _FriendlyString = ADHelper.GetFriendlyName(p.DistinguishedName);
-            _ChildComputers = ADHelper.GetComputersInOU(_ADSearchBase);
+            //_ChildComputers = ADHelper.GetComputersInOU(_ADSearchBase);
         }
 
-        public IEnumerator<Computer> GetEnumerator() { return ((IEnumerable<Computer>)_ChildComputers).GetEnumerator(); }
+        public OU(string name, string adSearchBase, string distinguishedName)
+        {
+            _Name = name;
+            _ADSearchBase = adSearchBase;
+            _FriendlyString = ADHelper.GetFriendlyName(distinguishedName);
+            //_ChildComputers = ADHelper.GetComputersInOU(distinguishedName);
+            _DistinguishedName = distinguishedName;
+        }
+
+        public IEnumerator<Computer> GetEnumerator() { 
+            if (_ChildComputers == null) { _ChildComputers = ADHelper.GetComputersInOU(_DistinguishedName);  }
+            return ((IEnumerable<Computer>)_ChildComputers).GetEnumerator(); 
+        }
         IEnumerator IEnumerable.GetEnumerator() { return ((IEnumerable)_ChildComputers).GetEnumerator(); }
 
-        IEnumerator<OU> IEnumerable<OU>.GetEnumerator() { return ((IEnumerable<OU>)_ChildOUs).GetEnumerator(); }
+        //IEnumerator<OU> IEnumerable<OU>.GetEnumerator() { return ((IEnumerable<OU>)_ChildOUs).GetEnumerator(); }
 
         public string Name { get => _Name; }
         public string FriendlyString { get => _FriendlyString; }
         public string SearchBase { get => _ADSearchBase; }
+        public string DistinguishedName { get => _DistinguishedName; }
+
+        public override string ToString()
+        { return _FriendlyString; }
+
+        public override bool Equals(object? obj) { return _DistinguishedName.Equals(((OU)obj).DistinguishedName); }
+        public int CompareTo(object? obj)
+        {
+            if (obj.GetType() != typeof(OU)) return -1;
+            return _DistinguishedName.CompareTo(((OU)obj).DistinguishedName);
+        }
+    }
+
+    internal class OUs : IEnumerable<OU>
+    {
+        List<OU> _ous;
+
+        public IEnumerator<OU> GetEnumerator() { return _ous.GetEnumerator(); }
+        IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
+
+        public OUs() { _ous = new List<OU>(); }
+        public void Add(OU OU) { _ous.Add(OU); }
+        public void Remove(OU OU) { _ous.Remove(OU); }
+        public bool Contains(OU OU) { return _ous.Contains(OU); }
+        public int Count { get => _ous.Count; }
+
+        public void Sort() { _ous.Sort(); }
     }
 
     public class DC
@@ -112,7 +152,7 @@ namespace ADHelperLib
                 PrincipalSearchResult<Principal> result = search.FindAll();
                 foreach (ComputerPrincipal found in result)
                 {
-                    Debug.WriteLine("Found an item: " + found.DistinguishedName);
+                    //Debug.WriteLine("Found an item: " + found.DistinguishedName);
                     computers.Add(new Computer(GetComputerPrincipal(found.DistinguishedName)));
                 }
             }
@@ -131,25 +171,55 @@ namespace ADHelperLib
             return computers;
         }
 
+        internal static List<OU> GetADOUs(string SearchBase)
+        {
+            DirectoryEntry directory = new DirectoryEntry("LDAP://" + SearchBase);//GetLDAPDomainPath());
+            DirectorySearcher search = new DirectorySearcher(directory);
+            search.Filter = "(objectClass=organizationalUnit)";
+            search.SearchScope = SearchScope.Subtree;
+            search.PropertiesToLoad.Add("distinguishedName");
+            search.PropertiesToLoad.Add("name");
+
+            List<OU> result = new List<OU>();
+
+            foreach(SearchResult entry in search.FindAll())
+            {
+                /*Debug.WriteLine("found an entry: " + entry.Properties["displayName"].ToString());
+
+                foreach (DictionaryEntry item in entry.Properties)
+                {
+                    Debug.WriteLine("found a thing: " + item.Key + " : " + item.Value);
+                    Debug.WriteLine(":: " + entry.Properties[item.Key.ToString()][0].ToString());
+                }*/
+                result.Add(new OU((entry.Properties["name"][0].ToString()), (entry.Properties["adspath"][0].ToString()), (entry.Properties["distinguishedName"][0].ToString())));
+            }
+
+            return result;
+        }
+
+        internal static OUs GetOUs(string SearchBase)
+        {
+            DirectoryEntry directory = new DirectoryEntry("LDAP://" + SearchBase);//GetLDAPDomainPath());
+            DirectorySearcher search = new DirectorySearcher(directory);
+            search.Filter = "(objectClass=organizationalUnit)";
+            search.SearchScope = SearchScope.Subtree;
+            search.PropertiesToLoad.Add("distinguishedName");
+            search.PropertiesToLoad.Add("name");
+
+            OUs ous = new();
+
+            foreach (SearchResult entry in search.FindAll())
+            { ous.Add(new OU((entry.Properties["name"][0].ToString()), (entry.Properties["adspath"][0].ToString()), (entry.Properties["distinguishedName"][0].ToString()))); }
+
+            return ous;
+        }
+
         internal static ComputerPrincipal GetComputerPrincipal(string SearchBase)
         {
-            /*
-            PrincipalContext context = new PrincipalContext(ContextType.Domain, GetDomainString(), SearchBase);
-            ComputerPrincipal principal = new ComputerPrincipal(context);
-            PrincipalSearcher ps = new PrincipalSearcher(principal);
-            PrincipalSearchResult<Principal> result = ps.FindAll();
-            ComputerPrincipal foundComputer = new ComputerPrincipal(result.FirstOrDefault().Context);
-            */
-
             PrincipalContext domain = new PrincipalContext(ContextType.Domain, GetDomainString(), SearchBase);
             ComputerPrincipal cp = new ComputerPrincipal(domain);
             PrincipalSearcher searcher = new PrincipalSearcher(cp);
             PrincipalSearchResult<Principal> result = searcher.FindAll();
-
-            /*foreach (ComputerPrincipal found in result)
-            {
-                Debug.WriteLine("Found computer: " + found.DistinguishedName);
-            }*/
 
             ComputerPrincipal FoundComputer = (ComputerPrincipal)result.FirstOrDefault();
 
@@ -163,7 +233,7 @@ namespace ADHelperLib
         }
 
         public static string GetLDAPDomainPath()
-        { return "LDAP://" + GetCurrentDomain; }
+        { return "LDAP://" + GetCurrentDomain(); }
 
         public static string GetDomainString() 
         {

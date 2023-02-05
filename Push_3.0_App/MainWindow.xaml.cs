@@ -16,7 +16,7 @@ using ScanHost;
 using System.Security;
 using System.Windows.Media.Animation;
 using System.Windows.Controls;
-using System.Configuration.ConfiguraitonManager;
+//using System.Configuration.ConfigurationManager;
 
 namespace Push_3._0_App
 {
