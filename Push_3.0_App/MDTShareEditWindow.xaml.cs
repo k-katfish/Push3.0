@@ -18,7 +18,7 @@ using System.Xml.Serialization;
 using static MDTlib.MDTHelper;
 using System.Windows.Forms;
 using Path = System.IO.Path;
-using MDTSettingsLib;
+//using MDTSettingsLib;
 
 namespace Push_3._0_App
 {
