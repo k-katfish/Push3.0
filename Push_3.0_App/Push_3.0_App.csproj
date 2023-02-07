@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,10 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ADHelperLib\ADHelperLib.csproj" />
     <ProjectReference Include="..\FixesAndScriptsLib\FixesAndScriptsLib.csproj" />
-    <ProjectReference Include="..\InstallSoftwareLib\InstallSoftwareLib.csproj" />
-    <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
     <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
-    <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
     <ProjectReference Include="..\RunTSLib\RunTSLib.csproj" />
     <ProjectReference Include="..\ScanHostLib\ScanHostLib.csproj" />
   </ItemGroup>

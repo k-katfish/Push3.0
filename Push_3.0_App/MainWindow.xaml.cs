@@ -17,6 +17,7 @@ using ScanHost;
 using System.Security;
 using System.Windows.Media.Animation;
 using System.Windows.Controls;
+using System.Threading.Tasks;
 //using System.Configuration.ConfigurationManager;
 
 namespace Push_3._0_App
@@ -185,9 +186,16 @@ namespace Push_3._0_App
             if (TSListFilter.SelectedItem.Equals("Applications"))
             {
                 // install
-                applications apps = (applications)TSList.SelectedItems;
-                string[] ComputerNames = (string[])ComputerList.SelectedItems;
+                //applications apps = (applications)TSList.SelectedItems;
+                //string[] ComputerNames = (string[])ComputerList.SelectedItems;
                 //InstallSoftware.InstallApp(apps, ComputerNames);
+                foreach (application app in TSList.SelectedItems)
+                {
+                    foreach (var ComputerName in ComputerList.SelectedItems)
+                    {
+                        Task.Run(() => InstallSoftware.InstallAppEmailResult(password, app, ComputerName.ToString(), Environment.UserName, Environment.UserDomainName, "smtp.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell"));
+                    }
+                }
             }
             else if (TSListFilter.SelectedItem.Equals("Task Sequences"))
             {
@@ -195,7 +203,7 @@ namespace Push_3._0_App
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
                 //string[] ComputerNames = (string[])ComputerList.SelectedItems;
                 foreach (var computerName in ComputerList.SelectedItems) {
-                    InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, "engr.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell");
+                    InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, "smtp.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell");
                 }
             }
         }

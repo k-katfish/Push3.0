@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
     <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
-    <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
     <ProjectReference Include="..\NotifyEmailLib\NotifyEmailLib.csproj" />
   </ItemGroup>
 

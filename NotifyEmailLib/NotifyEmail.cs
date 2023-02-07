@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Diagnostics;
+using System.Net.Mail;
 
 namespace NotifyEmailLib
 {
@@ -60,6 +61,7 @@ namespace NotifyEmailLib
 
         public static void SendMail(string smtpServer, string fromAddress, string fromName, string toAddress, string toName, string subject, string body)
         {
+            Debug.WriteLine($"Planning to send email via {smtpServer} from {fromAddress} to {toAddress} with subject {subject} and body {body}");
             try
             {
                 SmtpClient smtpClient = new SmtpClient(smtpServer);

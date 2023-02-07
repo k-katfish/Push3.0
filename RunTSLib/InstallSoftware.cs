@@ -26,6 +26,14 @@ namespace RunTSLib
             InvokeCMD(password, ComputerName, CommandLine, Username, UserDomain);
         }
 
+        public static void InstallAppEmailResult(SecureString password, application app, string ComputerName, string UserName, string UserDomain, string smtpServer, string smtpToAddy, string smtpToName)
+        {
+            string CommandLine = "cmd /e:on /c " + $"pushd {app.WorkingDirectory}\\&&{app.CommandLine}";
+            EmailBuilder email = new EmailBuilder(smtpServer, smtpToAddy, smtpToName, $"Runing {app.Name} on {ComputerName} via Push");
+            InvokeCMDWait(password, ComputerName, CommandLine, UserName, UserDomain, email);
+            email.Send();
+        }
+
         public static void RunTSEmailResult(SecureString password, ts TS, string ShareLocation, string ComputerName, string UserName, string UserDomain, string smtpServer, string smtpToAddy, string smtpToName)
         {
             string CommandLine = "cmd /e:on /c " + $"pushd {ShareLocation}\\&&cscript.exe Scripts\\LiteTouch.wsf /OSDComputerName:%COMPUTERNAME% /TaskSequenceID:{TS.ID} /SKIPTaskSequence:YES /SKIPComputerName:YES";
@@ -209,13 +217,26 @@ namespace RunTSLib
 
             while (!processIsFinished)
             {
-                if (processes.Count() >= 0)
+                try
                 {
-                    Thread.Sleep(1000);
-                    try { processes = remoteenablecsspsession.QueryInstances(Namespace, "WQL", PSQuery); }
-                    catch (CimException e) { email.AddLine($"Lost contact with computer. Assuming a reboot occured."); Debug.WriteLine(e); processIsFinished = true; }
-                } 
-                else { processIsFinished = true; }
+                    Debug.WriteLine($"Process {ProcessID} is still not finished...");
+                    if (processes.Count() > 0)
+                    {
+                        foreach (var proc in processes)
+                        {
+                            Debug.WriteLine($"Process {proc.CimInstanceProperties["Name"].Value} exists, waiting...");
+                        }
+                        Thread.Sleep(1000);
+                        try { processes = remoteenablecsspsession.QueryInstances(Namespace, "WQL", PSQuery); }
+                        catch (CimException e) { email.AddLine($"Lost contact with computer. Assuming a reboot occured."); Debug.WriteLine(e); processIsFinished = true; }
+                    }
+                    else { processIsFinished = true; }
+                } catch (Exception e)
+                {
+                    email.AddLine($"Lost contact with computer. Assuming a reboot occured.");
+                    Debug.WriteLine(e);
+                    processIsFinished = true;
+                }
             }
 
             email.AddLine($"Process with id {ProcessID} finished running on {ComputerName}");
@@ -239,6 +260,7 @@ namespace RunTSLib
 
             email.AddLine("Disabled CredSSP for this & remote computer.");
             email.AddLine($"Successfully ran {CommandLine} on {ComputerName}");
+            Debug.WriteLine($"Done invoking {CommandLine} on {ComputerName}.");
         }
     }
 }
