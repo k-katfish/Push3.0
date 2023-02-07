@@ -1,7 +1,7 @@
 ﻿// librarys written for push
 using MDTlib;
-using MDTAppLib;
-using MDTTSLib;
+//using MDTAppLib;
+//using MDTTSLib;
 using FixesAndScriptsLib;
 using ADHelperLib;
 //using InstallSoftwareLib;
@@ -66,7 +66,7 @@ namespace Push_3._0_App
             {
                 foreach (application app in this.share.Apps)
                 {
-                    if (ShowHidden.IsChecked == false && (app.hide.Equals("false") || app.enable.Equals("false"))) { continue; }
+                    if (ShowHidden.IsChecked == false && /*(app.hide.Equals("false") ||*/ app.enable.Equals("false")) { continue; }
                     if (app.Name.ToLower().Contains(SearchTS.Text.ToLower()))
                     { TSList.Items.Add(app); }
                 }
@@ -76,7 +76,7 @@ namespace Push_3._0_App
             {
                 foreach (ts TS in this.share.TaskSequences)
                 {
-                    if (ShowHidden.IsChecked == false && (TS.Enable.Equals("false"))) { continue; }
+                    if (ShowHidden.IsChecked == false && (TS.Enabled.Equals("false"))) { continue; }
                     if (TS.Name.ToLower().Contains(SearchTS.Text.ToLower()))
                     { TSList.Items.Add(TS); }
                 }

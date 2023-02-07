@@ -1,6 +1,7 @@
 ﻿using System.Security;
-using MDTAppLib;
-using MDTTSLib;
+//using MDTAppLib;
+//using MDTTSLib;
+using MDTlib;
 using System.Diagnostics;
 using Microsoft.Management.Infrastructure;
 using Microsoft.Management.Infrastructure.Options;
