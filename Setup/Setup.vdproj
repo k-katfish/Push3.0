@@ -15,37 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_151BC218DB6E45CC88A0ADE4FD83F0DD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_15367FE1ECE64DE6AFEDAAB3BDC4CADC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2742AB545A2943A198529CFBEC582E38"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_53DFBF6EEC8D4F25BC6FD6508E87595D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_95E2D5647C7E430395878F9D7C00F958"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E3DDCAF18112472B82CA8CE2A7DD755E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -315,6 +285,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_FD778C1EB9DB4D199CF5AC649CEC597E"
+            {
+            "Name" = "8:Shortcut to Publish Items from Push_3.0_App (Active)"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_15367FE1ECE64DE6AFEDAAB3BDC4CADC"
+            "Folder" = "8:_EB05115259E740D385F8A4E5EB634E11"
+            "WorkingFolder" = "8:_503DF00F08CB4C428E432295C930C0C8"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -714,37 +698,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_151BC218DB6E45CC88A0ADE4FD83F0DD"
-            {
-            "SourcePath" = "8:..\\MDTlib\\obj\\Debug\\net6.0\\MDTlib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{882B18EF-0C0A-4C25-9B7B-77257914D230}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_15367FE1ECE64DE6AFEDAAB3BDC4CADC"
             {
-            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Release\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -770,9 +726,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2742AB545A2943A198529CFBEC582E38"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E43F9DE23434E1A87B01816051CBB84"
             {
-            "SourcePath" = "8:..\\MDTTSLib\\obj\\Debug\\net6.0\\MDTTSLib.dll"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -791,36 +747,8 @@
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{48F4F826-3632-4B1A-968C-9B9B64181EA0}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_53DFBF6EEC8D4F25BC6FD6508E87595D"
-            {
-            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Debug\\net6.0-windows\\Push_3.0_App.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{9D90A3E7-1F31-4071-8E1F-8342F8722E8A}"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{52279627-17CA-4B5A-828E-A47D0CF9778F}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
@@ -854,9 +782,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_95E2D5647C7E430395878F9D7C00F958"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_999296F23E7E4387AE3D842F687D9ED6"
             {
-            "SourcePath" = "8:..\\MDTAppLib\\obj\\Debug\\net6.0\\MDTAppLib.dll"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -875,16 +803,16 @@
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{C17F3EB3-98FE-4402-AC70-DEACEB61483E}"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{4B8579D2-9EDC-4202-BFEF-DF511123C38C}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3DDCAF18112472B82CA8CE2A7DD755E"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B155C2867D344E8F92FC75BFC63B6F3B"
             {
-            "SourcePath" = "8:..\\ScanHostLib\\obj\\Debug\\net6.0\\ScanHostLib.dll"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -903,8 +831,64 @@
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
             "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{C719B337-7AD6-40FC-B2A0-01A03ABE7B00}"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{E8D0F65C-FB06-4AA7-B3A2-8B71C548AC50}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E5C9A94637C546EC9396EF511C73DD87"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{0ACB5518-FFB5-4574-BF3D-176D29B72FCC}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F63D05ABF1D44EE8806F6520C13C7D2E"
+            {
+            "SourcePath" = "8:"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
+            "OutputProjectGuid" = "8:{882B18EF-0C0A-4C25-9B7B-77257914D230}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

@@ -131,6 +131,7 @@ namespace Push_3._0_App
         {
             ConnectMDTShare_Click(sender, e);
             SetCredential_Click(sender, e);
+            ConnectAD_Click(sender, e);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -181,20 +182,22 @@ namespace Push_3._0_App
 
         private void InstallOnMultipleMachines_Click(object sender, RoutedEventArgs e)
         {
-        /*    if (TSListFilter.SelectedItem.Equals("Applications"))
+            if (TSListFilter.SelectedItem.Equals("Applications"))
             {
                 // install
                 applications apps = (applications)TSList.SelectedItems;
-                string[] ComputerNames = (string[])Computer_List.SelectedItems;
-                InstallSoftware.InstallApp(apps, ComputerNames);
+                string[] ComputerNames = (string[])ComputerList.SelectedItems;
+                //InstallSoftware.InstallApp(apps, ComputerNames);
             }
             else if (TSListFilter.SelectedItem.Equals("Task Sequences"))
             {
                 // runts
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
-                string[] ComputerNames = (string[])Computer_List.SelectedItems;
-                InstallSoftware.RunTS(SelectedTaskSequence, ComputerNames);
-            }*/
+                //string[] ComputerNames = (string[])ComputerList.SelectedItems;
+                foreach (var computerName in ComputerList.SelectedItems) {
+                    InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, "engr.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell");
+                }
+            }
         }
 
         private void SearchTS_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

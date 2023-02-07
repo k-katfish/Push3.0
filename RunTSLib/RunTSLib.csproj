@@ -16,6 +16,7 @@
     <ProjectReference Include="..\MDTAppLib\MDTAppLib.csproj" />
     <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
     <ProjectReference Include="..\MDTTSLib\MDTTSLib.csproj" />
+    <ProjectReference Include="..\NotifyEmailLib\NotifyEmailLib.csproj" />
   </ItemGroup>
 
 </Project>

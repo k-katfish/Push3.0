@@ -38,10 +38,10 @@ namespace ScanHostLib
 
         public static CPUInfo GetInfo(CimSession cimSession)
         {
-            string Namespace = @"root\cimv2";
-            string OSQuery = "SELECT * FROM Win32_Processor";
+            string Namespace = $"\\\\{cimSession.ComputerName}root\\cimv2";
+            string CPUQuery = "SELECT * FROM Win32_Processor";
             //            CimSession mySession = CimSession.Create("cs");
-            IEnumerable<CimInstance> queryInstance = cimSession.QueryInstances(Namespace, "WQL", OSQuery);
+            IEnumerable<CimInstance> queryInstance = cimSession.QueryInstances(Namespace, "WQL", CPUQuery);
             CimInstance cimInstance = queryInstance.FirstOrDefault();
 
             CPUInfo cpu = new();
