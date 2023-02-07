@@ -27,12 +27,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_16751B3C0A614FC3A281F8A7431490ED"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2742AB545A2943A198529CFBEC582E38"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -73,6 +67,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -714,7 +716,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_151BC218DB6E45CC88A0ADE4FD83F0DD"
             {
-            "SourcePath" = "8:..\\MDTlib\\obj\\Release\\net6.0\\MDTlib.dll"
+            "SourcePath" = "8:..\\MDTlib\\obj\\Debug\\net6.0\\MDTlib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -742,7 +744,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_15367FE1ECE64DE6AFEDAAB3BDC4CADC"
             {
-            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Release\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Debug\\net6.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -768,37 +770,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_16751B3C0A614FC3A281F8A7431490ED"
-            {
-            "SourcePath" = "8:..\\MDTSettingsLib\\obj\\Release\\net6.0\\MDTSettingsLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{721717E6-1720-4B88-A9CD-ACB5C0B1CF35}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2742AB545A2943A198529CFBEC582E38"
             {
-            "SourcePath" = "8:..\\MDTTSLib\\obj\\Release\\net6.0\\MDTTSLib.dll"
+            "SourcePath" = "8:..\\MDTTSLib\\obj\\Debug\\net6.0\\MDTTSLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -826,7 +800,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_53DFBF6EEC8D4F25BC6FD6508E87595D"
             {
-            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Release\\net6.0-windows\\Push_3.0_App.dll"
+            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Debug\\net6.0-windows\\Push_3.0_App.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -882,7 +856,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_95E2D5647C7E430395878F9D7C00F958"
             {
-            "SourcePath" = "8:..\\MDTAppLib\\obj\\Release\\net6.0\\MDTAppLib.dll"
+            "SourcePath" = "8:..\\MDTAppLib\\obj\\Debug\\net6.0\\MDTAppLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
@@ -910,7 +884,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E3DDCAF18112472B82CA8CE2A7DD755E"
             {
-            "SourcePath" = "8:..\\ScanHostLib\\obj\\Release\\net6.0\\ScanHostLib.dll"
+            "SourcePath" = "8:..\\ScanHostLib\\obj\\Debug\\net6.0\\ScanHostLib.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_503DF00F08CB4C428E432295C930C0C8"
