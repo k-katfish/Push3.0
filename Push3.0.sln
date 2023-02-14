@@ -32,6 +32,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADHelperLibTests", "ADHelpe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyEmailLib", "NotifyEmailLib\NotifyEmailLib.csproj", "{E8D0F65C-FB06-4AA7-B3A2-8B71C548AC50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSettingsLib", "PushSettingsLib\PushSettingsLib.csproj", "{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Push_Setup", "Push_Setup\Push_Setup.vdproj", "{5CFB2143-FF45-4101-B8DA-F9FC8186364E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,6 +190,24 @@ Global
 		{E8D0F65C-FB06-4AA7-B3A2-8B71C548AC50}.Release|x64.Build.0 = Release|x64
 		{E8D0F65C-FB06-4AA7-B3A2-8B71C548AC50}.Release|x86.ActiveCfg = Release|x86
 		{E8D0F65C-FB06-4AA7-B3A2-8B71C548AC50}.Release|x86.Build.0 = Release|x86
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Debug|x64.Build.0 = Debug|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Debug|x86.Build.0 = Debug|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Release|x64.Build.0 = Release|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}.Release|x86.Build.0 = Release|Any CPU
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Debug|Any CPU.ActiveCfg = Debug
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Debug|x64.ActiveCfg = Debug
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Debug|x86.ActiveCfg = Debug
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|Any CPU.ActiveCfg = Release
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|x64.ActiveCfg = Release
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

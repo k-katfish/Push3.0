@@ -97,6 +97,13 @@ namespace Push_3._0_App
         private void Share_Changed(object? sender, EventArgs e)
         { SetTSListContent(); }
 
+        private void SettingsUpdated(object? sender, SettingsUpdatedEventArgs e)
+        {
+            this.share.Location = e.Updated.MDTShareLocation;
+            this.share.Refresh();
+            SetTSListContent();
+        }
+
         private void SetCredential_Click(object? sender, EventArgs e)
         {
             GetPW pW= new GetPW();
@@ -104,11 +111,11 @@ namespace Push_3._0_App
             this.password = pW.Password;
         }
 
-        private void ConnectMDTShare_Click(object sender, RoutedEventArgs e)
+        /*private void ConnectMDTShare_Click(object sender, RoutedEventArgs e)
         {
             MDTShareEditWindow sew = new MDTShareEditWindow(this.share);
             sew.Show();
-        }
+        }*/
 
         private void ConnectAD_Click(object sender, RoutedEventArgs e)
         {
@@ -204,7 +211,7 @@ namespace Push_3._0_App
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
                 //string[] ComputerNames = (string[])ComputerList.SelectedItems;
                 foreach (var computerName in ComputerList.SelectedItems) {
-                    InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, "smtp.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell");
+                    Task.Run(() => InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, "smtp.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell"));
                 }
             }
         }

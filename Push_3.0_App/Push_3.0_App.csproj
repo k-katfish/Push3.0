@@ -22,6 +22,7 @@
     <ProjectReference Include="..\ADHelperLib\ADHelperLib.csproj" />
     <ProjectReference Include="..\FixesAndScriptsLib\FixesAndScriptsLib.csproj" />
     <ProjectReference Include="..\MDTlib\MDTlib.csproj" />
+    <ProjectReference Include="..\PushSettingsLib\PushSettingsLib.csproj" />
     <ProjectReference Include="..\RunTSLib\RunTSLib.csproj" />
     <ProjectReference Include="..\ScanHostLib\ScanHostLib.csproj" />
   </ItemGroup>

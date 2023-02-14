@@ -68,7 +68,7 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top" SelectionMode="Extended" />
         <Button x:Name="InstallOnMultipleMachines"
-                    Content="Install Now"
+                    Content="Install on Selected Machines"
                     Height="25"
                     Width="256"
                     Margin="16,385,0,0"

@@ -36,7 +36,7 @@ namespace RunTSLib
 
         public static void RunTSEmailResult(SecureString password, ts TS, string ShareLocation, string ComputerName, string UserName, string UserDomain, string smtpServer, string smtpToAddy, string smtpToName)
         {
-            string CommandLine = "cmd /e:on /c " + $"pushd {ShareLocation}\\&&cscript.exe Scripts\\LiteTouch.wsf /OSDComputerName:%COMPUTERNAME% /TaskSequenceID:{TS.ID} /SKIPTaskSequence:YES /SKIPComputerName:YES";
+            string CommandLine = "cmd /e:on /c " + $"pushd {ShareLocation}\\&&C:\\Windows\\System32\\cscript.exe Scripts\\LiteTouch.wsf /OSDComputerName:%COMPUTERNAME% /TaskSequenceID:{TS.ID} /SKIPTaskSequence:YES /SKIPComputerName:YES";
             EmailBuilder email = new EmailBuilder(smtpServer, smtpToAddy, smtpToName, $"Runing {TS.Name} on {ComputerName} via Push");
             InvokeCMDWait(password, ComputerName, CommandLine, UserName, UserDomain, email);
             email.Send();
@@ -211,6 +211,7 @@ namespace RunTSLib
             Debug.WriteLine("Waiting for process " + ProcessID + " to finish.");
 
             bool processIsFinished = false;
+            bool lostContact = false;
             string Namespace = $"\\\\{ComputerName}\\root\\cimv2";
             string PSQuery = $"SELECT * FROM Win32_Process WHERE ProcessId = {ProcessID}";
             IEnumerable<CimInstance> processes = remoteenablecsspsession.QueryInstances(Namespace, "WQL", PSQuery);
@@ -228,7 +229,7 @@ namespace RunTSLib
                         }
                         Thread.Sleep(1000);
                         try { processes = remoteenablecsspsession.QueryInstances(Namespace, "WQL", PSQuery); }
-                        catch (CimException e) { email.AddLine($"Lost contact with computer. Assuming a reboot occured."); Debug.WriteLine(e); processIsFinished = true; }
+                        catch (CimException e) { email.AddLine($"Lost contact with computer. Assuming a reboot occured."); Debug.WriteLine(e); processIsFinished = true; lostContact = true; }
                     }
                     else { processIsFinished = true; }
                 } catch (Exception e)
@@ -236,6 +237,7 @@ namespace RunTSLib
                     email.AddLine($"Lost contact with computer. Assuming a reboot occured.");
                     Debug.WriteLine(e);
                     processIsFinished = true;
+                    lostContact = true;
                 }
             }
 
@@ -244,16 +246,15 @@ namespace RunTSLib
 
             //*Unsetup CredSSP
             string DisableCSSPClientPScmd = "powershell.exe /c Disable-WSManCredSSP -Role Client";
-            //CimSession localenablecsspsession = CimSession.Create("localhost");
-            //CimInstance localwinprocessinstance = new("Win32_Process", "root\\cimv2");
             CimMethodParametersCollection DisableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", DisableCSSPClientPScmd, CimFlags.In) };
             localenablecsspsession.InvokeMethod(localwinprocessinstance, "create", DisableCSSPmethodparameters);
 
-            string DisableCSSPRemotePScmd = "powershell.exe /c Disable-WSManCredSSP -Role Server";
-            //CimSession remoteenablecsspsession = CimSession.Create("ander-02");
-            //CimInstance remotewinprocessinstance = new("Win32_Process", "root\\cimv2");
-            DisableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", DisableCSSPRemotePScmd, CimFlags.In) };
-            remoteenablecsspsession.InvokeMethod(remotewinprocessinstance, "create", DisableCSSPmethodparameters);
+            if (!lostContact)
+            {
+                string DisableCSSPRemotePScmd = "powershell.exe /c Disable-WSManCredSSP -Role Server";
+                DisableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", DisableCSSPRemotePScmd, CimFlags.In) };
+                remoteenablecsspsession.InvokeMethod(remotewinprocessinstance, "create", DisableCSSPmethodparameters);
+            }
 
             localenablecsspsession.Close();
             remoteenablecsspsession.Close();
