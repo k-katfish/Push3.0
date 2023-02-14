@@ -32,9 +32,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADHelperLibTests", "ADHelpe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotifyEmailLib", "NotifyEmailLib\NotifyEmailLib.csproj", "{E8D0F65C-FB06-4AA7-B3A2-8B71C548AC50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSettingsLib", "PushSettingsLib\PushSettingsLib.csproj", "{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PushSettingsLib", "PushSettingsLib\PushSettingsLib.csproj", "{92E0736B-A3F0-4270-85FA-EE9C50DDC7AB}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Push_Setup", "Push_Setup\Push_Setup.vdproj", "{5CFB2143-FF45-4101-B8DA-F9FC8186364E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSettingsLibTests", "PushSettingsTests\PushSettingsLibTests.csproj", "{2A879E95-50A8-443A-916C-93712F44B238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -207,7 +209,20 @@ Global
 		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Debug|x86.ActiveCfg = Debug
 		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|Any CPU.ActiveCfg = Release
 		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|x64.ActiveCfg = Release
+		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|x64.Build.0 = Release
 		{5CFB2143-FF45-4101-B8DA-F9FC8186364E}.Release|x86.ActiveCfg = Release
+		{2A879E95-50A8-443A-916C-93712F44B238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Debug|x64.Build.0 = Debug|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Debug|x86.Build.0 = Debug|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Release|x64.ActiveCfg = Release|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Release|x64.Build.0 = Release|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Release|x86.ActiveCfg = Release|Any CPU
+		{2A879E95-50A8-443A-916C-93712F44B238}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

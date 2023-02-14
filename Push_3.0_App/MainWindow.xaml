@@ -14,13 +14,13 @@
                 <Menu Background="DarkGray" ToolBar.OverflowMode="Never">
                     <MenuItem Header="_File">
                         <MenuItem Header="Launch Session Manager"/>
-                        <MenuItem Header="Quick Configure" Click="QuickConfig_Click"/>
-                        <MenuItem Header="Settings / Preferences">
-                            <MenuItem Header="Connect to MDT Share" Click="ConnectMDTShare_Click"/>
+                        <!--MenuItem Header="Quick Configure" Click="QuickConfig_Click"/-->
+                        <MenuItem Header="Settings / Preferences" Click="UpdatePushSettings_Click" />
+                            <!--MenuItem Header="Connect to MDT Share" Click="ConnectMDTShare_Click"/>
                             <MenuItem Header="Integrate with AD" Click="ConnectAD_Click"/>
                             <MenuItem Header="Set Groups Folder Location"/>
                             <MenuItem Header="Set Credential" Click="SetCredential_Click"/>
-                        </MenuItem>
+                        </MenuItem-->
                         <MenuItem Header="Exit" Click="Exit_Click"/>
                     </MenuItem>
                     <MenuItem Header="_Remote Computer">

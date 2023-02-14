@@ -16,6 +16,7 @@ using Path = System.IO.Path;
 
 using PushSettingsLib;
 using MDTlib;
+using System.Threading;
 
 namespace Push_3._0_App
 {
@@ -40,14 +41,53 @@ namespace Push_3._0_App
         {
             InitializeComponent();
             ShareLocationTextBox.Text = _settings.MDTShareLocation;
+            FromAddressTextBox.Text = _settings.FromAddress;
+            ToAddressTextBox.Text = _settings.ToAddress;
+            FromNameTextBox.Text = _settings.FromName;
+            ToNameTextBox.Text = _settings.ToName;
+            SMTPServerTextBox.Text = _settings.SMTPServer;
+            if (_settings.DoEmail) { EmailMe.IsChecked = true; }
             UsernameTextBox.Text = Environment.UserDomainName + "\\" + Environment.UserName;
         }
 
-        private void ShareLocationTextBox_TextChanged(object sender, EventArgs e)
+        /*private void ShareLocationTextBox_TextChanged(object sender, EventArgs e)
         {
-            ConnectButton.IsEnabled = true;
-            ConnectButton.Content = "Test Share";
-            ShareNameTextBox.Text = "";
+            if (!ShareLocationTextBox.Text.Equals(_settings.MDTShareLocation))
+            {
+                ConnectButton.IsEnabled = true;
+                ConnectButton.Content = "Test Share";
+                ShareNameTextBox.Text = "";
+            }
+        }*/
+
+        private void EmailMe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (EmailMe.IsChecked == true)
+            {
+                _settings.DoEmail = true;
+                FromAddressTextBox.IsEnabled= true;
+                ToAddressTextBox.IsEnabled  = true;
+                FromNameTextBox.IsEnabled   = true;
+                ToNameTextBox.IsEnabled     = true;
+                SMTPServerTextBox.IsEnabled = true;
+            } else
+            {
+                _settings.DoEmail = false;
+                FromAddressTextBox.IsEnabled = false;
+                ToAddressTextBox.IsEnabled   = false;
+                FromNameTextBox.IsEnabled    = false;
+                ToNameTextBox.IsEnabled      = false;
+                SMTPServerTextBox.IsEnabled  = false;
+            }
+        }
+
+        private void SetEmailPrefsButton_Click(object sender, EventArgs e)
+        {
+            _settings.FromAddress = FromAddressTextBox.Text;
+            _settings.FromName    = FromNameTextBox.Text;
+            _settings.ToAddress   = ToAddressTextBox.Text;
+            _settings.ToName      = ToNameTextBox.Text;
+            _settings.SMTPServer  = SMTPServerTextBox.Text;
         }
 
         private void BrowseToMDTShareButton_Click(object sender, RoutedEventArgs e)
@@ -66,12 +106,11 @@ namespace Push_3._0_App
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ConnectButton.Content.Equals("Test"))
+            if (ConnectButton.Content.Equals("Test Share"))
             {
                 if (MDTHelper.TestMDTShare(ShareLocationTextBox.Text))
                 {
                     ShareNameTextBox.Text = MDTHelper.GetNameOfShare(ShareLocationTextBox.Text);
-                    // TODO: get name of share from Control\Settings.xml... MDTlib?
                     ConnectButton.Content = "Connect";
                 }
             }

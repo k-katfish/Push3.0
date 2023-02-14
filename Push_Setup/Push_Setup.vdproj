@@ -165,7 +165,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Push_Setup"
         "ProductCode" = "8:{41DD2B7C-1BC0-4707-B679-05C661774E86}"
-        "PackageCode" = "8:{C8084CED-BAB4-44A6-8228-34EA0BE5613C}"
+        "PackageCode" = "8:{529B53B1-38DF-406A-8D8F-2A783922AD63}"
         "UpgradeCode" = "8:{7BDB5705-5AE7-46FC-8F31-FED11DF81E39}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -285,6 +285,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D5264E11A76C4D1AA8AB861A91872AA8"
+            {
+            "Name" = "8:Shortcut to Publish Items from Push_3.0_App (Active)"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_2B16DA0C79384709A35EED415421E387"
+            "Folder" = "8:_8943C6E601034A07880700C8E4422EE3"
+            "WorkingFolder" = "8:_A249B63B92F64EE9810ED57F6FA75C56"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {
@@ -686,7 +700,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2B16DA0C79384709A35EED415421E387"
             {
-            "SourcePath" = "8:..\\Push_3.0_App\\obj\\Debug\\net6.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\Push_3.0_App\\bin\\Release\\net6.0-windows\\win-x64\\app.publish\\Push_3.0_App.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A249B63B92F64EE9810ED57F6FA75C56"

@@ -42,17 +42,23 @@ namespace ScanHostLib
             string CPUQuery = "SELECT * FROM Win32_Processor";
             //            CimSession mySession = CimSession.Create("cs");
             IEnumerable<CimInstance> queryInstance = cimSession.QueryInstances(Namespace, "WQL", CPUQuery);
+#pragma warning disable CS8600
             CimInstance cimInstance = queryInstance.FirstOrDefault();
+#pragma warning restore CS8600
 
             CPUInfo cpu = new();
 
+#pragma warning disable CS8604, CS8602
             string[] cpuName = ParseCPUData(cimInstance.CimInstanceProperties["Name"].Value.ToString());
+#pragma warning restore CS8604, CS8602
 
+#pragma warning disable CS8601
             cpu.Name = cpuName[0];
-//            cpu.Name = cimInstance.CimInstanceProperties["Name"].Value.ToString();
+            //            cpu.Name = cimInstance.CimInstanceProperties["Name"].Value.ToString();
             cpu.Speed = cimInstance.CimInstanceProperties["MaxClockSpeed"].Value.ToString();
             cpu.CoresString = (cimInstance.CimInstanceProperties["NumberOfCores"].Value.ToString());
             cpu.LogicalProcessorsString = (cimInstance.CimInstanceProperties["NumberOfLogicalProcessors"].Value.ToString());
+#pragma warning restore CS8601
 
             return cpu;
         }

@@ -7,30 +7,21 @@ namespace PushSettingsLib
 {
     public class Settings
     {
-        private string _MDTShareLocation;
-        //private EmailContact _contact;
-        private string _SMTPServer;
-        private string _FromAddress;
-        private string _ToAddress;
-        private string _FromName;
-        private string _ToName;
-
         public Settings() 
         {
-            _MDTShareLocation = ReadSetting("MDTShareLocation");
-            _SMTPServer = ReadSetting("SMTPServer");
-            _FromAddress = ReadSetting("FromAddress");
-            _ToAddress = ReadSetting("ToAddress");
-            _FromName = ReadSetting("FromName");
-            _ToName = ReadSetting("ToName");
+            if (ReadSetting("DoEmail").Equals("Not Found"))
+            {   SetSetting("DoEmail", "false"); }
         }
 
-        public string MDTShareLocation { get => this._MDTShareLocation; set { this._MDTShareLocation = value; SetSetting("MDTShareLocation", value); }}
-        public string SMTPServer { get => this._SMTPServer; set { this._SMTPServer = value; SetSetting("SMTPServer", value); }}
-        public string FromAddress { get => this._FromAddress; set { this._FromAddress = value; SetSetting("FromAddress", value); } }
-        public string ToAddress { get => this._ToAddress; set { this._ToAddress = value; SetSetting("ToAddress", value); } }
-        public string FromName { get => this._FromName; set { this._FromName = value; SetSetting("FromName", value); } }
-        public string ToName { get => this._ToName; set { this._ToName = value; SetSetting("ToName", value); } }
+        public string MDTShareLocation { get => ReadSetting("MDTShareLocation"); set => SetSetting("MDTShareLocation", value); }
+        public string SMTPServer { get => ReadSetting("SMTPServer"); set => SetSetting("SMTPServer", value); }
+        public string FromAddress { get => ReadSetting("FromAddress"); set => SetSetting("FromAddress", value); }
+        public string ToAddress { get => ReadSetting("ToAddress"); set => SetSetting("ToAddress", value); }
+        public string FromName { get => ReadSetting("FromName"); set => SetSetting("FromName", value); }
+        public string ToName { get => ReadSetting("ToName"); set => SetSetting("ToName", value); }
+        public bool   DoEmail { get => Boolean.Parse(ReadSetting("DoEmail")); set => SetSetting("DoEmail", value.ToString()); }
+        public EmailContact emailContact
+        { get { return new EmailContact(SMTPServer, FromAddress, FromName, ToAddress, ToName); }}
 
         static string ReadSetting(string key)
         {
@@ -47,8 +38,8 @@ namespace PushSettingsLib
         {
             try
             {
-                var ConfigFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
-                var settings = ConfigFile.AppSettings.Settings;
+                Configuration ConfigFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                KeyValueConfigurationCollection settings = ConfigFile.AppSettings.Settings;
                 if (settings[key] == null) { settings.Add(key, value); }
                 else { settings[key].Value = value; }
                 ConfigFile.Save(ConfigurationSaveMode.Modified);

@@ -66,7 +66,7 @@ namespace MDTlib
         public string Location
         {
             get => this._location;
-            set => this._location = value;
+            set { this._location = value; Refresh(); }
         }
 
         public void Refresh ()
@@ -148,10 +148,11 @@ namespace MDTlib
 
         public static string GetNameOfShare(string DeploySharePath)
         {
+#pragma warning disable CS8600, CS8602
             if (!File.Exists($"{DeploySharePath}\\Control\\Settings.xml")) { return ""; }
-            Settings s = new();
-            s = SettingsHelper.GetSettingsFromShare(DeploySharePath);
+            Settings s = SettingsHelper.GetSettingsFromShare(DeploySharePath);
             return s.Description;
+#pragma warning restore CS8600, CS8602
         }
     }
 }

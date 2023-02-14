@@ -9,14 +9,27 @@
     <Grid>
 
         <Label Content="MDT Share Location:" HorizontalAlignment="Left" Margin="2,29,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ShareLocationTextBox" HorizontalAlignment="Left" Margin="121,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" TextChanged="ShareLocationTextBox_TextChanged" Text="C:\DeploymentShare$"/>
+        <TextBox x:Name="ShareLocationTextBox" HorizontalAlignment="Left" Margin="121,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" Text="C:\DeploymentShare$"/>
         <Button x:Name="BrowseToMDTShareButton" Content="Browse..." HorizontalAlignment="Left" Margin="341,33,0,0" VerticalAlignment="Top" Width="65" Click="BrowseToMDTShareButton_Click" Height="18"/>
-        <Button x:Name="ConnectButton" Content="Test Share" HorizontalAlignment="Left" Margin="418,32,0,0" VerticalAlignment="Top" Width="100" Click="ConnectButton_Click" IsEnabled="False"/>
+        <Button x:Name="ConnectButton" Content="Test Share" HorizontalAlignment="Left" Margin="418,32,0,0" VerticalAlignment="Top" Width="100" Click="ConnectButton_Click" IsEnabled="True"/>
         <Label Content="Share Name:" HorizontalAlignment="Left" Margin="2,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ShareNameTextBox" HorizontalAlignment="Left" Margin="84,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" IsEnabled="False" TextChanged="ShareNameTextBox_TextChanged"/>
-        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="84,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" TextChanged="UsernameTextBox_TextChanged" IsEnabled="False"/>
+        <TextBox x:Name="ShareNameTextBox" HorizontalAlignment="Left" Margin="84,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322" IsEnabled="False"/>
+        <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="84,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" IsEnabled="False"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="2,108,0,0" VerticalAlignment="Top"/>
-        <Button Content="Set Password..." HorizontalAlignment="Left" Margin="280,110,0,0" VerticalAlignment="Top"/>
+        <Button Content="Set Password..." HorizontalAlignment="Left" Margin="280,110,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <CheckBox x:Name="EmailMe" Content="Email Me" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" Checked="EmailMe_CheckedChanged"/>
+        <TextBox x:Name="FromAddressTextBox" HorizontalAlignment="Left" Margin="118,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249"/>
+        <Label Content="From Address:" HorizontalAlignment="Left" Margin="30,168,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="FromNameTextBox" HorizontalAlignment="Left" Margin="417,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246"/>
+        <Label Content="From:" HorizontalAlignment="Left" Margin="372,168,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ToAddressTextBox" HorizontalAlignment="Left" Margin="118,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249"/>
+        <Label Content="To Address:" HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ToNameTextBox" HorizontalAlignment="Left" Margin="417,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246"/>
+        <Label Content="To:" HorizontalAlignment="Left" Margin="372,190,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SMTPServerTextBox" HorizontalAlignment="Left" Margin="118,221,0,0" TextWrapping="Wrap" Text="smtp.MyDomain.COM" VerticalAlignment="Top" Width="249"/>
+        <Label Content="SMTP Server:" HorizontalAlignment="Left" Margin="30,217,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="SetEmailPrefsButton" Content="Update email preferences" HorizontalAlignment="Left" Margin="374,217,0,0" VerticalAlignment="Top" Width="289" Click="SetEmailPrefsButton_Click"/>
+
 
         <!--Label Content="MDT Share Location" HorizontalAlignment="Left" Margin="37,37,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="MDTShareLocationTextBox" HorizontalAlignment="Left" Margin="158,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="332" Height="22"/>

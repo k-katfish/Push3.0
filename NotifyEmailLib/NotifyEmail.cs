@@ -8,11 +8,6 @@ namespace NotifyEmailLib
     public class EmailBuilder
     {
         private EmailContact _contact;
-        private string _smtpServer;
-        private string _fromAddress;
-        private string _fromName;
-        private string _toAddress;
-        private string _toName;
         private string _subject;
         private string _tldr;
         private string _body;
@@ -20,13 +15,6 @@ namespace NotifyEmailLib
 
         public EmailBuilder(string smtpServer, string toAddress, string toName, string subject) 
         {
-            //_smtpServer = smtpServer;
-            //_fromAddress = "PushApp@engr.colostate.edu";
-            //_fromName = "Push App 3";
-            //_toAddress = toAddress;
-            //_toName = toName;
-            //_subject = subject;
-
             _contact = new EmailContact(smtpServer, toAddress, toName);
             _subject = subject;
         }
@@ -51,7 +39,7 @@ namespace NotifyEmailLib
         {
             //string Content = "<h1>Report from Push App</h1>" + _body + "<br><br><h2>Summary of Errors reported:</h2>" + _errorsBody;
             //NotifyEmail.SendMail(_smtpServer, _fromAddress, _fromName, _toAddress, _toName, _subject, Content);
-            NotifyEmail.SendMail(this);
+            if (!_contact.SMTPServer.Equals("noserver")) { NotifyEmail.SendMail(this); }
         }
     }
 

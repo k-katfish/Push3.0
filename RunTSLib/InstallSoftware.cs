@@ -10,133 +10,22 @@ using System.Net;
 
 namespace RunTSLib
 {
-    public static class InstallSoftware
+    public static partial class InstallSoftware
     {
-        public static void InstallApp(SecureString password, application app, string ComputerName, string Username, string UserDomain)
-        {
-            Debug.WriteLine("InstallApp called with a password, app: " + app.Name + " and computer: " + ComputerName);
-            string CommandLine = "cmd /e:on /c " + $"pushd {app.WorkingDirectory}&&{app.CommandLine}";
-            InvokeCMD(password, ComputerName, CommandLine, Username, UserDomain);
-        }
-
-        public static void RunTS(SecureString password, ts TS, string ShareLocation, string ComputerName, string Username, string UserDomain)
-        {
-            Debug.WriteLine("InstallApp called with a password, ts: " + TS.Name + " and computer: " + ComputerName);
-            string CommandLine = "cmd /e:on /c " + $"pushd {ShareLocation}\\&&cscript.exe Scripts\\LiteTouch.wsf /OSDCompterName:%COMPUTERNAME% /TaskSequenceID:{TS.ID} /SKIPTaskSequence:YES /SKIPComputerName:YES";
-            InvokeCMD(password, ComputerName, CommandLine, Username, UserDomain);
-        }
-
-        public static void InstallAppEmailResult(SecureString password, application app, string ComputerName, string UserName, string UserDomain, string smtpServer, string smtpToAddy, string smtpToName)
-        {
-            string CommandLine = "cmd /e:on /c " + $"pushd {app.WorkingDirectory}\\&&{app.CommandLine}";
-            EmailBuilder email = new EmailBuilder(smtpServer, smtpToAddy, smtpToName, $"Runing {app.Name} on {ComputerName} via Push");
-            InvokeCMDWait(password, ComputerName, CommandLine, UserName, UserDomain, email);
-            email.Send();
-        }
-
-        public static void RunTSEmailResult(SecureString password, ts TS, string ShareLocation, string ComputerName, string UserName, string UserDomain, string smtpServer, string smtpToAddy, string smtpToName)
-        {
-            string CommandLine = "cmd /e:on /c " + $"pushd {ShareLocation}\\&&C:\\Windows\\System32\\cscript.exe Scripts\\LiteTouch.wsf /OSDComputerName:%COMPUTERNAME% /TaskSequenceID:{TS.ID} /SKIPTaskSequence:YES /SKIPComputerName:YES";
-            EmailBuilder email = new EmailBuilder(smtpServer, smtpToAddy, smtpToName, $"Runing {TS.Name} on {ComputerName} via Push");
-            InvokeCMDWait(password, ComputerName, CommandLine, UserName, UserDomain, email);
-            email.Send();
-        }
-
-        public static void InvokeCMD(SecureString password, string ComputerName, string CommandLine, string UserName, string UserDomain)
-        {
-            // I'm so not ready for dependencys yet...
-
-            Debug.WriteLine("Setting up CredSSP");
-            string EnableCSSPClientPScmd = $"powershell.exe /c Enable-WSManCredSSP -Role Client -DelegateComputer {ComputerName} -Force";
-            CimSession localenablecsspsession = CimSession.Create("localhost");
-            CimInstance localwinprocessinstance = new("Win32_Process", "root\\cimv2");
-            CimMethodParametersCollection EnableCSSPmethodparameters = new CimMethodParametersCollection { 
-                CimMethodParameter.Create("commandLine", EnableCSSPClientPScmd, CimFlags.In)
-            };
-            localenablecsspsession.InvokeMethod(localwinprocessinstance, "create", EnableCSSPmethodparameters);
-
-            Debug.WriteLine("Enabled CredSSP on Local Computer");
-            Debug.WriteLine("Enabling CredSSP on remote");
-
-            string EnableCSSPRemotePScmd = "powershell.exe /c Enable-WSManCredSSP -Role Server -Force";
-            CimSession remoteenablecsspsession = CimSession.Create(ComputerName);
-            CimInstance remotewinprocessinstance = new("Win32_Process", $"\\\\{ComputerName}\\root\\cimv2");
-            EnableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", EnableCSSPRemotePScmd, CimFlags.In) };
-            remoteenablecsspsession.InvokeMethod(remotewinprocessinstance, "create", EnableCSSPmethodparameters);
-
-            Debug.WriteLine("Enabled CredSSP on Remote");
-
-            //            Debug.WriteLine("Sleeping for 10 s");
-            //            Thread.Sleep(10000);
-            //            Debug.WriteLine("Finished Sleeping");
-
-
-            //* do the thing
-            Debug.WriteLine(CommandLine);
-
-            SecureString p = new NetworkCredential(UserName, password, UserDomain).SecurePassword;
-            CimCredential cred = new CimCredential(PasswordAuthenticationMechanism.CredSsp, UserDomain, UserName, p);
-
-            WSManSessionOptions options = new WSManSessionOptions();
-            options.AddDestinationCredentials(cred);
-
-            CimSession session = CimSession.Create(ComputerName, options);
-
-            string ns = $"\\\\{ComputerName}\\root\\cimv2";
-            CimInstance instance = new("Win32_Process", ns);
-
-            CimMethodParametersCollection methodParameters = new CimMethodParametersCollection {
-                CimMethodParameter.Create("commandLine", CommandLine, CimFlags.In)
-            };
-
-            bool didInvoke = false;
-
-            while (!didInvoke)
-            {
-                try
-                {
-                    session.InvokeMethod(instance, "create", methodParameters);
-                    didInvoke = true;
-                }
-                catch (Exception ex) { Debug.WriteLine(ex.Message); }
-            }
-
-            //            Debug.WriteLine("Finished Invoking command");
-            //            Debug.WriteLine("sleeping");
-            //            Thread.Sleep(10000);
-            //            Debug.WriteLine("finished sleeping");
-
-            session.Close();
-
-            //*Unsetup CredSSP
-            string DisableCSSPClientPScmd = "powershell.exe /c Disable-WSManCredSSP -Role Client";
-            //CimSession localenablecsspsession = CimSession.Create("localhost");
-            //CimInstance localwinprocessinstance = new("Win32_Process", "root\\cimv2");
-            CimMethodParametersCollection DisableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", DisableCSSPClientPScmd, CimFlags.In) };
-            localenablecsspsession.InvokeMethod(localwinprocessinstance, "create", DisableCSSPmethodparameters);
-
-            string DisableCSSPRemotePScmd = "powershell.exe /c Disable-WSManCredSSP -Role Server";
-            //CimSession remoteenablecsspsession = CimSession.Create("ander-02");
-            //CimInstance remotewinprocessinstance = new("Win32_Process", "root\\cimv2");
-            DisableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", DisableCSSPRemotePScmd, CimFlags.In) };
-            remoteenablecsspsession.InvokeMethod(remotewinprocessinstance, "create", DisableCSSPmethodparameters);
-
-            Debug.WriteLine("Disabled CredSSP, finished.");
-        }
-
         public static void InvokeCMDWait(SecureString password, string ComputerName, string CommandLine, string UserName, string UserDomain, EmailBuilder email)
         {
+            DateTime StartTime = DateTime.Now;
             Debug.WriteLine("Starting Invoke CMD Wait...");
             email.AddLine("Setting up CredSSP from this computer to " + ComputerName);
             string EnableCSSPClientPScmd = $"powershell.exe /c Enable-WSManCredSSP -Role Client -DelegateComputer {ComputerName} -Force";
             CimSession localenablecsspsession = CimSession.Create("localhost");
-            CimInstance localwinprocessinstance = new("Win32_Process", "root\\cimv2");
+            CimInstance localwinprocessinstance = new("Win32_Process", "\\\\localhost\\root\\cimv2");
             CimMethodParametersCollection EnableCSSPmethodparameters = new CimMethodParametersCollection {
                 CimMethodParameter.Create("commandLine", EnableCSSPClientPScmd, CimFlags.In)
             };
             localenablecsspsession.InvokeMethod(localwinprocessinstance, "create", EnableCSSPmethodparameters);
 
-            email.AddLine("Enabled CredSSP on Local Computer");
+            email.AddLine("Enabled CredSSP on Local Computer with delegation to " + ComputerName);
             email.AddLine("Enabling CredSSP on: " + ComputerName);
 
             string EnableCSSPRemotePScmd = "powershell.exe /c Enable-WSManCredSSP -Role Server -Force";
@@ -146,11 +35,6 @@ namespace RunTSLib
             remoteenablecsspsession.InvokeMethod(remotewinprocessinstance, "create", EnableCSSPmethodparameters);
 
             email.AddLine("Enabled CredSSP on Remote");
-
-            //            Debug.WriteLine("Sleeping for 10 s");
-            //            Thread.Sleep(10000);
-            //            Debug.WriteLine("Finished Sleeping");
-
             Debug.WriteLine("Enabled CredSSP");
 
             //* do the thing
@@ -166,10 +50,7 @@ namespace RunTSLib
             options.AddDestinationCredentials(cred);
 
             CimSession session = CimSession.Create(ComputerName, options);
-
-            string ns = $"\\\\{ComputerName}\\root\\cimv2";
-            CimInstance instance = new("Win32_Process", ns);
-
+            CimInstance instance = new("Win32_Process", $"\\\\{ComputerName}\\root\\cimv2");
             CimMethodParametersCollection methodParameters = new CimMethodParametersCollection {
                 CimMethodParameter.Create("commandLine", CommandLine, CimFlags.In)
             };
@@ -182,23 +63,25 @@ namespace RunTSLib
                 try
                 {
                     CimMethodResult createdSession = session.InvokeMethod(instance, "create", methodParameters);
+#pragma warning disable CS8602
                     ProcessID = (UInt32)createdSession.OutParameters.FirstOrDefault().Value;
+#pragma warning restore CS8602
                     didInvoke = true;
                 }
                 catch (Exception ex) { Debug.WriteLine(ex.Message); Thread.Sleep(1000); }
             }
 
-                        Debug.WriteLine("Finished Invoking command, started process with ID: " + ProcessID);
-            //            Debug.WriteLine("sleeping");
-            //            Thread.Sleep(10000);
-            //            Debug.WriteLine("finished sleeping");
-
+            Debug.WriteLine("Finished Invoking command, started process with ID: " + ProcessID);
             session.Close();
 
             if (ProcessID == 0)
             {
+                DateTime EndTime = DateTime.Now;
                 Debug.WriteLine("Found PID of 0, that's weird. Quitting.");
+                email.AddTLDR("Process failed.");
+                email.AddTLDR("Total Time Taken:" + (EndTime - StartTime));
                 email.AddError("Unable to invoke the command on " + ComputerName);
+                email.AddError("Info: Found PID of 0, which is weird.");
                 email.Send();
                 remoteenablecsspsession.Close();
                 localenablecsspsession.Close();
@@ -206,7 +89,7 @@ namespace RunTSLib
             }
 
             email.AddLine("Finished invoking " + CommandLine + " on " + ComputerName);
-            email.AddLine("waiting for process to finish...");
+            email.AddLine($"waiting for process {ProcessID} to finish...");
 
             Debug.WriteLine("Waiting for process " + ProcessID + " to finish.");
 
@@ -254,6 +137,7 @@ namespace RunTSLib
                 string DisableCSSPRemotePScmd = "powershell.exe /c Disable-WSManCredSSP -Role Server";
                 DisableCSSPmethodparameters = new CimMethodParametersCollection { CimMethodParameter.Create("commandLine", DisableCSSPRemotePScmd, CimFlags.In) };
                 remoteenablecsspsession.InvokeMethod(remotewinprocessinstance, "create", DisableCSSPmethodparameters);
+                email.AddLine("Disabled CredSSP on remote computer, it was still online.");
             }
 
             localenablecsspsession.Close();
@@ -262,6 +146,10 @@ namespace RunTSLib
             email.AddLine("Disabled CredSSP for this & remote computer.");
             email.AddLine($"Successfully ran {CommandLine} on {ComputerName}");
             Debug.WriteLine($"Done invoking {CommandLine} on {ComputerName}.");
+
+            email.AddTLDR($"Installation was successful!");
+            DateTime EndTime = DateTime.Now;
+            email.AddTLDR("Total Time Taken:" + (EndTime - StartTime));
         }
     }
 }

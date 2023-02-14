@@ -30,6 +30,8 @@ namespace Push_3._0_App
         MDTShare share;
         SecureString password;
 
+        PushSettingsLib.Settings _settings = new();
+
         public MainWindow()
         {
             this.share = new MDTShare();
@@ -41,12 +43,21 @@ namespace Push_3._0_App
             TSListFilter.Items.Add("Task Sequences");
             TSListFilter.Items.Add("Fixes & Scripts");
             TSListFilter.SelectedIndex = 0;
+            SetTSListContent();
+
+            // Get AD OUs for groups location
+            OUs ous = ADHelper.GetOUs(ADHelper.GetCurrentDomain());
+            foreach (OU ou in ous) { SelectGroup.Items.Add(ou); }
+
+            this.share.Location = _settings.MDTShareLocation;
         }
 
 
         private void MainToolBar_Loaded(object sender, RoutedEventArgs e)
         {
+#pragma warning disable CS8600, CS8602
             ToolBar toolBar = sender as ToolBar;
+
             var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
             if (overflowGrid != null)
             {
@@ -58,6 +69,7 @@ namespace Push_3._0_App
             {
                 mainPanelBorder.Margin = new Thickness(0);
             }
+#pragma warning restore CS8600, CS8602
         }
 
         private void SetTSListContent()
@@ -97,12 +109,11 @@ namespace Push_3._0_App
         private void Share_Changed(object? sender, EventArgs e)
         { SetTSListContent(); }
 
-        private void SettingsUpdated(object? sender, SettingsUpdatedEventArgs e)
-        {
-            this.share.Location = e.Updated.MDTShareLocation;
-            this.share.Refresh();
-            SetTSListContent();
-        }
+        //private void SettingsUpdated(object? sender, SettingsUpdatedEventArgs e)
+        //{
+        //    this.share.Location = e.Updated.MDTShareLocation;
+        //    this.share.Refresh();
+       // }
 
         private void SetCredential_Click(object? sender, EventArgs e)
         {
@@ -117,29 +128,38 @@ namespace Push_3._0_App
             sew.Show();
         }*/
 
-        private void ConnectAD_Click(object sender, RoutedEventArgs e)
-        {
-            OUs ous = ADHelper.GetOUs(ADHelper.GetCurrentDomain());
-            foreach (OU ou in ous)
-            {
-                SelectGroup.Items.Add(ou);
-            }
-        }
+        //private void ConnectAD_Click(object sender, RoutedEventArgs e)
+        //{
+        //OUs ous = ADHelper.GetOUs(ADHelper.GetCurrentDomain());
+        //    foreach (OU ou in ous)
+        //    {
+        //        SelectGroup.Items.Add(ou);
+        //    }
+        //}
 
         private void SelectGroup_SelectionChanged(object? sender, EventArgs e)
         {
             ComputerList.Items.Clear();
-            foreach (Computer computer in (SelectGroup.SelectedItem as OU))
+#pragma warning disable CS8602
+            foreach (Computer computer in SelectGroup.SelectedItem as OU)
             {
                 ComputerList.Items.Add(computer);
             }
+#pragma warning restore CS8602
         }
 
-        private void QuickConfig_Click(object? sender, RoutedEventArgs e)
+        //private void QuickConfig_Click(object? sender, RoutedEventArgs e)
+        //{
+            //ConnectMDTShare_Click(sender, e);
+            //SetCredential_Click(sender, e);
+            //ConnectAD_Click(sender, e);
+        //}
+
+        private void UpdatePushSettings_Click(object? sender, EventArgs e)
         {
-            ConnectMDTShare_Click(sender, e);
-            SetCredential_Click(sender, e);
-            ConnectAD_Click(sender, e);
+            PushSettings settingsWindow = new PushSettings();
+            settingsWindow.ShowDialog();
+            SetTSListContent();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -174,23 +194,42 @@ namespace Push_3._0_App
 
         private void InstallOnSingleMachine_Click(object sender, RoutedEventArgs e)
         {
+            if (this.password == null)
+            {
+                GetPW pW = new GetPW();
+                pW.ShowDialog();
+                this.password = pW.Password;
+            }
+
             if (TSListFilter.SelectedItem.Equals("Applications"))
             {
                 // install
                 application app = (application)TSList.SelectedItem;
-                InstallSoftware.InstallApp(password, app, Computer_Name.Text, Environment.UserName, Environment.UserDomainName);
+                if (_settings.DoEmail)
+                { InstallSoftware.InstallAppEmailResult(password, app, Computer_Name.Text, Environment.UserName, Environment.UserDomainName, _settings.emailContact); } 
+                else 
+                { InstallSoftware.InstallApp(password, app, Computer_Name.Text, Environment.UserName, Environment.UserDomainName); }
             } 
             else if (TSListFilter.SelectedItem.Equals("Task Sequences"))
             {
-                // runts
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
-                //InstallSoftware.RunTS(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName);
-                InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName, "smtp.colostate.edu", "kkatfish@colostate.edu", "Kyle Ketchell");
+
+                if (_settings.DoEmail)
+                { InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName, _settings.emailContact);} 
+                else
+                { InstallSoftware.RunTS(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName); }
             }
         }
 
         private void InstallOnMultipleMachines_Click(object sender, RoutedEventArgs e)
         {
+            if (this.password == null)
+            {
+                GetPW pW = new GetPW();
+                pW.ShowDialog();
+                this.password = pW.Password;
+            }
+
             if (TSListFilter.SelectedItem.Equals("Applications"))
             {
                 // install
@@ -199,9 +238,15 @@ namespace Push_3._0_App
                 //InstallSoftware.InstallApp(apps, ComputerNames);
                 foreach (application app in TSList.SelectedItems)
                 {
-                    foreach (var ComputerName in ComputerList.SelectedItems)
+                    foreach (Computer ComputerName in ComputerList.SelectedItems)
                     {
-                        Task.Run(() => InstallSoftware.InstallAppEmailResult(password, app, ComputerName.ToString(), Environment.UserName, Environment.UserDomainName, "smtp.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell"));
+                        if (_settings.DoEmail)
+                        {
+                            Task.Run(() => InstallSoftware.InstallAppEmailResult(password, app, ComputerName.ToString(), Environment.UserName, Environment.UserDomainName, _settings.emailContact));
+                        } else
+                        {
+                            Task.Run(() => InstallSoftware.InstallApp(password, app, ComputerName.ToString(), Environment.UserName, Environment.UserDomainName));
+                        }
                     }
                 }
             }
@@ -210,8 +255,11 @@ namespace Push_3._0_App
                 // runts
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
                 //string[] ComputerNames = (string[])ComputerList.SelectedItems;
-                foreach (var computerName in ComputerList.SelectedItems) {
-                    Task.Run(() => InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, "smtp.ColoState.EDU", "kkatfish@colostate.edu", "Kyle Ketchell"));
+                foreach (Computer computerName in ComputerList.SelectedItems) {
+                    if (_settings.DoEmail)
+                    { Task.Run(() => InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName, _settings.emailContact)); }
+                    else
+                    { Task.Run(() => InstallSoftware.RunTS(password, SelectedTaskSequence, share.Location, computerName.ToString(), Environment.UserName, Environment.UserDomainName)); }
                 }
             }
         }
