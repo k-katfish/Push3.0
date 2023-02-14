@@ -177,7 +177,8 @@ namespace Push_3._0_App
             {
                 // runts
                 ts SelectedTaskSequence = (ts)TSList.SelectedItem;
-                InstallSoftware.RunTS(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName);
+                //InstallSoftware.RunTS(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName);
+                InstallSoftware.RunTSEmailResult(password, SelectedTaskSequence, share.Location, Computer_Name.Text, Environment.UserName, Environment.UserDomainName, "smtp.colostate.edu", "kkatfish@colostate.edu", "Kyle Ketchell");
             }
         }
 

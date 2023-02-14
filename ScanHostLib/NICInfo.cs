@@ -49,7 +49,7 @@ namespace ScanHostLib
         public bool FullDNSRegistrationEnabled { get => this._FullDNSRegistrationEnabled; set => this._FullDNSRegistrationEnabled = value; }
         public string IPAddress { get => this._IPAddress; set => this._IPAddress = value; }
         public string[] IPAddressObject {
-            get => new string[] { this._IPAddress };
+            //get => new string[] { this._IPAddress };
             set
             {
                 this._IPAddress = value[0];

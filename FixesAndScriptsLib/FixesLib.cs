@@ -14,6 +14,7 @@ namespace FixesAndScriptsLib
         public Fix() { }
         public Fix(DirectoryInfo directoryInfo) 
         {
+            _Name = directoryInfo.Name;
             _WorkingDirectory = directoryInfo.FullName;
 
             _batchFiles = directoryInfo.GetFiles("*.bat");
