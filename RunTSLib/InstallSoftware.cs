@@ -76,10 +76,10 @@ namespace RunTSLib
 
             if (ProcessID == 0)
             {
-                DateTime EndTime = DateTime.Now;
+                DateTime FailEndTime = DateTime.Now;
                 Debug.WriteLine("Found PID of 0, that's weird. Quitting.");
                 email.AddTLDR("Process failed.");
-                email.AddTLDR("Total Time Taken:" + (EndTime - StartTime));
+                email.AddTLDR("Total Time Taken:" + (FailEndTime - StartTime));
                 email.AddError("Unable to invoke the command on " + ComputerName);
                 email.AddError("Info: Found PID of 0, which is weird.");
                 email.Send();
