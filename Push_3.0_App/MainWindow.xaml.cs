@@ -161,7 +161,7 @@ namespace Push_3._0_App
 
         private void ScanComputer_Click(object sender, RoutedEventArgs e)
         {
-            ScanHostWindow sh = new ScanHostWindow();
+            ScanHostWindow sh = new ScanHostWindow(Computer_Name.Text);
             sh.Show();
         }
 

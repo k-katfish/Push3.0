@@ -21,13 +21,14 @@ namespace ScanHost
     /// </summary>
     public partial class ScanHostWindow : Window
     {
-        public ScanHostWindow()
+        public ScanHostWindow(string ComputerName)
         {
             InitializeComponent();
 
-            ComputerInfo host = ScanHostHelper.Scan("localhost");   //TODO: Remember to change this
+            ComputerInfo host = ScanHostHelper.Scan(ComputerName);   //TODO: Remember to change this
             PIInfoBox.Text = host.CPU.ToString();
             OSInfoBox.Text = host.OS.ToString();
+            NIInfoBox.Text = host.NIC.ToString();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

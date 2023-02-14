@@ -30,10 +30,12 @@ namespace ScanHost
             CimSession cs = CimSession.Create(ComputerName);
             CPUInfo cpuInfo = CPUInfoHelper.GetInfo(cs);
             OSInfo osInfo = OSInfoHelper.GetOSInfo(cs);
+            NICInfo nicInfo = NICInfoHelper.GetNICInfo(cs);
 
             ComputerInfo computer = new();
             computer.CPU = cpuInfo;
             computer.OS = osInfo;
+            computer.NIC = nicInfo;
 
             return computer;
             //                string Namespace = @"root\cimv2";

@@ -103,7 +103,7 @@ namespace ScanHostLib
         public static OSInfo GetOSInfo(CimSession cs)
         {
 #pragma warning disable CS8600, CS8601, CS8602, CS8604
-            string Namespace = @"root\cimv2";
+            string Namespace = $"\\\\{cs.ComputerName}\\root\\cimv2";
             string OSQuery = "SELECT * FROM Win32_OperatingSystem";
 //            CimSession mySession = CimSession.Create("cs");
             IEnumerable<CimInstance> queryInstance = cs.QueryInstances(Namespace, "WQL", OSQuery);
@@ -128,7 +128,7 @@ namespace ScanHostLib
         public static OSInfo GetOSInfo(string? ComputerName)
         {
 #pragma warning disable CS8600, CS8601, CS8602, CS8604
-            string Namespace = @"root\cimv2";
+            string Namespace = $"\\\\{ComputerName}\\root\\cimv2";
             string OSQuery = "SELECT * FROM Win32_OperatingSystem";
             CimSession cs = CimSession.Create(ComputerName);
             IEnumerable<CimInstance> queryInstance = cs.QueryInstances(Namespace, "WQL", OSQuery);
