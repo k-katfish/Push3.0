@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Push_3._0_App
+namespace Push
 {
     /// <summary>
     /// Interaction logic for App.xaml

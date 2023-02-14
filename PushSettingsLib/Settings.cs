@@ -7,14 +7,21 @@ namespace PushSettingsLib
 {
     public class Settings
     {
+        public event EventHandler SettingsChanged;
+        public void OnSettingsChanged()
+        {
+            EventHandler handler = SettingsChanged;
+            if (null != handler) handler(this, EventArgs.Empty);
+        }
+
         public Settings() 
         {
             if (ReadSetting("DoEmail").Equals("Not Found"))
             {   SetSetting("DoEmail", "false"); }
         }
 
-        public string MDTShareLocation { get => ReadSetting("MDTShareLocation"); set => SetSetting("MDTShareLocation", value); }
-        public string SMTPServer { get => ReadSetting("SMTPServer"); set => SetSetting("SMTPServer", value); }
+        public string MDTShareLocation { get => ReadSetting("MDTShareLocation"); set { SetSetting("MDTShareLocation", value); OnSettingsChanged(); }}
+        public string SMTPServer { get => ReadSetting("SMTPServer"); set { SetSetting("SMTPServer", value); OnSettingsChanged(); }}
         public string FromAddress { get => ReadSetting("FromAddress"); set => SetSetting("FromAddress", value); }
         public string ToAddress { get => ReadSetting("ToAddress"); set => SetSetting("ToAddress", value); }
         public string FromName { get => ReadSetting("FromName"); set => SetSetting("FromName", value); }

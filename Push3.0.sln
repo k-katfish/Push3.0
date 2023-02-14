@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Push_3.0_App", "Push_3.0_App\Push_3.0_App.csproj", "{9D90A3E7-1F31-4071-8E1F-8342F8722E8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Push", "Push_3.0_App\Push.csproj", "{9D90A3E7-1F31-4071-8E1F-8342F8722E8A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDTlib", "MDTlib\MDTlib.csproj", "{882B18EF-0C0A-4C25-9B7B-77257914D230}"
 EndProject
@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PushSettingsLib", "PushSett
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Push_Setup", "Push_Setup\Push_Setup.vdproj", "{5CFB2143-FF45-4101-B8DA-F9FC8186364E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSettingsLibTests", "PushSettingsTests\PushSettingsLibTests.csproj", "{2A879E95-50A8-443A-916C-93712F44B238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PushSettingsLibTests", "PushSettingsTests\PushSettingsLibTests.csproj", "{2A879E95-50A8-443A-916C-93712F44B238}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

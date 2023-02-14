@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Push_3._0_App
+namespace Push
 {
     /// <summary>
     /// Interaction logic for Window1.xaml

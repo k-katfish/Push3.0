@@ -2,7 +2,7 @@
 using MDTlib;
 //using MDTAppLib;
 //using MDTTSLib;
-using FixesAndScriptsLib;
+//using FixesAndScriptsLib;
 using ADHelperLib;
 //using InstallSoftwareLib;
 using RunTSLib;
@@ -20,7 +20,7 @@ using System.Windows.Controls;
 using System.Threading.Tasks;
 //using System.Configuration.ConfigurationManager;
 
-namespace Push_3._0_App
+namespace Push
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -36,6 +36,7 @@ namespace Push_3._0_App
         {
             this.share = new MDTShare();
             this.share.ShareChanged += Share_Changed;
+            _settings.SettingsChanged += _settings_SettingsChanged;
 
             InitializeComponent();
 
@@ -52,6 +53,8 @@ namespace Push_3._0_App
             this.share.Location = _settings.MDTShareLocation;
         }
 
+        private void _settings_SettingsChanged(object? sender, EventArgs e)
+        { this.share.Location = _settings.MDTShareLocation; }
 
         private void MainToolBar_Loaded(object sender, RoutedEventArgs e)
         {
@@ -158,8 +161,8 @@ namespace Push_3._0_App
         private void UpdatePushSettings_Click(object? sender, EventArgs e)
         {
             PushSettings settingsWindow = new PushSettings();
-            settingsWindow.ShowDialog();
-            SetTSListContent();
+            settingsWindow.Show();
+         //   SetTSListContent();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

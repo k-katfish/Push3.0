@@ -18,23 +18,13 @@ using PushSettingsLib;
 using MDTlib;
 using System.Threading;
 
-namespace Push_3._0_App
+namespace Push
 {
-    public class SettingsUpdatedEventArgs 
-    {
-        private PushSettingsLib.Settings _updated;
-        public SettingsUpdatedEventArgs(PushSettingsLib.Settings updated) { _updated = updated; }
-        public PushSettingsLib.Settings Updated { get => _updated; }
-    }
-
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class PushSettings : Window
     {
-        public delegate void SettingsUpdatedEventHandler(object sender, SettingsUpdatedEventArgs e);
-        public event SettingsUpdatedEventHandler SettingsUpdated;
-
         PushSettingsLib.Settings _settings = new PushSettingsLib.Settings();
 
         public PushSettings()
@@ -70,6 +60,7 @@ namespace Push_3._0_App
                 FromNameTextBox.IsEnabled   = true;
                 ToNameTextBox.IsEnabled     = true;
                 SMTPServerTextBox.IsEnabled = true;
+                SetEmailPrefsButton.IsEnabled = true;
             } else
             {
                 _settings.DoEmail = false;
@@ -78,6 +69,7 @@ namespace Push_3._0_App
                 FromNameTextBox.IsEnabled    = false;
                 ToNameTextBox.IsEnabled      = false;
                 SMTPServerTextBox.IsEnabled  = false;
+                SetEmailPrefsButton.IsEnabled = false;
             }
         }
 
@@ -117,9 +109,6 @@ namespace Push_3._0_App
             else if (ConnectButton.Content.Equals("Connect"))
             {
                 this._settings.MDTShareLocation = ShareLocationTextBox.Text;
-                //this.share.Refresh();
-                SettingsUpdated?.Invoke(this, new SettingsUpdatedEventArgs(_settings));
-                this.Close();
             }
         }
     }

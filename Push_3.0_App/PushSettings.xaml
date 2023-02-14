@@ -1,9 +1,9 @@
-﻿<Window x:Class="Push_3._0_App.PushSettings"
+﻿<Window x:Class="Push.PushSettings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Push_3._0_App"
+        xmlns:local="clr-namespace:Push"
         mc:Ignorable="d"
         Title="Manage Push Settings" Height="450" Width="800">
     <Grid>
@@ -17,18 +17,18 @@
         <TextBox x:Name="UsernameTextBox" HorizontalAlignment="Left" Margin="84,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" IsEnabled="False"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="2,108,0,0" VerticalAlignment="Top"/>
         <Button Content="Set Password..." HorizontalAlignment="Left" Margin="280,110,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox x:Name="EmailMe" Content="Email Me" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" Checked="EmailMe_CheckedChanged"/>
-        <TextBox x:Name="FromAddressTextBox" HorizontalAlignment="Left" Margin="118,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249"/>
+        <CheckBox x:Name="EmailMe" Content="Email Me" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" Click="EmailMe_CheckedChanged"/>
+        <TextBox x:Name="FromAddressTextBox" HorizontalAlignment="Left" Margin="118,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" IsEnabled="False"/>
         <Label Content="From Address:" HorizontalAlignment="Left" Margin="30,168,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="FromNameTextBox" HorizontalAlignment="Left" Margin="417,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246"/>
+        <TextBox x:Name="FromNameTextBox" HorizontalAlignment="Left" Margin="417,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" IsEnabled="False"/>
         <Label Content="From:" HorizontalAlignment="Left" Margin="372,168,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ToAddressTextBox" HorizontalAlignment="Left" Margin="118,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249"/>
+        <TextBox x:Name="ToAddressTextBox" HorizontalAlignment="Left" Margin="118,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="249" IsEnabled="False"/>
         <Label Content="To Address:" HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ToNameTextBox" HorizontalAlignment="Left" Margin="417,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246"/>
+        <TextBox x:Name="ToNameTextBox" HorizontalAlignment="Left" Margin="417,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" IsEnabled="False"/>
         <Label Content="To:" HorizontalAlignment="Left" Margin="372,190,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SMTPServerTextBox" HorizontalAlignment="Left" Margin="118,221,0,0" TextWrapping="Wrap" Text="smtp.MyDomain.COM" VerticalAlignment="Top" Width="249"/>
+        <TextBox x:Name="SMTPServerTextBox" HorizontalAlignment="Left" Margin="118,221,0,0" TextWrapping="Wrap" Text="smtp.MyDomain.COM" VerticalAlignment="Top" Width="249" IsEnabled="False"/>
         <Label Content="SMTP Server:" HorizontalAlignment="Left" Margin="30,217,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="SetEmailPrefsButton" Content="Update email preferences" HorizontalAlignment="Left" Margin="374,217,0,0" VerticalAlignment="Top" Width="289" Click="SetEmailPrefsButton_Click"/>
+        <Button x:Name="SetEmailPrefsButton" Content="Update email preferences" HorizontalAlignment="Left" Margin="374,217,0,0" VerticalAlignment="Top" Width="289" Click="SetEmailPrefsButton_Click" IsEnabled="False"/>
 
 
         <!--Label Content="MDT Share Location" HorizontalAlignment="Left" Margin="37,37,0,0" VerticalAlignment="Top"/>
